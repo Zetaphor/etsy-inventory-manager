@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#productTemplate').remove();
 
     $.display.page.products.load = function() {
-        $.display.toggleLoadingScreen($.etsy.getAllProducts($.display.page.products.drawProducts));
+        $.display.toggleLoadingScreen($.etsyDB.getAllProducts($.display.page.products.drawProducts));
     };
 
     $.display.page.products.drawProducts = function(products) {

@@ -23,22 +23,4 @@ $(document).ready(function() {
             Materialize.toast('Succesfully updated all listings', 4000);
         }
     };
-
-    $.etsy.getNewProducts = function(callback) {
-        $.db.table('products').where("bin_id").equals(-1).toArray().then(function(data) {
-            callback(data);
-        });
-    };
-
-    $.etsy.getAllProducts = function(callback) {
-        $.db.table('products').toArray().then(function(data) {
-            callback(data);
-        });
-    };
-
-    $.etsy.getBins = function(callback) {
-        $.db.table('bins').toArray().then(function(data) {
-            callback(data);
-        });
-    };
 });

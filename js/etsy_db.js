@@ -76,4 +76,22 @@ $(document).ready(function() {
             }
         });
     };
+
+    $.etsyDB.getNewProducts = function(callback) {
+        $.db.table('products').where("bin_id").equals(-1).toArray().then(function(data) {
+            callback(data);
+        });
+    };
+
+    $.etsyDB.getAllProducts = function(callback) {
+        $.db.table('products').toArray().then(function(data) {
+            callback(data);
+        });
+    };
+
+    $.etsy.getBins = function(callback) {
+        $.db.table('bins').toArray().then(function(data) {
+            callback(data);
+        });
+    };
 });
