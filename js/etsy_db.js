@@ -10,11 +10,31 @@ $(document).ready(function() {
         $.db.version(1).stores(
             {
                 products: '++id, bin_id, listing_id, title, categories, price, created, original_created',
-                bins: '++id, name'
+                bins: '++id, name, notes'
             }
         );
         console.log("Created database");
         $.db.open();
+    };
+
+    $.addListing = function(listing) {
+        $.db.table('products').where("listing_id").equals(listing.listing_id).count(function(count) {
+            if (count === 0) {
+                $.db.table('products').add({
+                    bin_id: -1,
+                    listing_id: listing.listing_id,
+                    title: listing.title,
+                    categories: listing.category_path.toString(),
+                    price: listing.price,
+                    created: listing.creation_tsz,
+                    original_creation: listing.original_creation_tsz
+                }).then(function() {
+                    console.log("Added listing #" + listing.listing_id);
+                });
+            } else {
+                console.log("Attempted to add duplicate listing #" + listing.listing_id + ' - ' + listing.title);
+            }
+        });
     };
 
     $.listTables = function() {

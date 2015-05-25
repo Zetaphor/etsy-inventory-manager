@@ -1,20 +1,25 @@
 $(document).ready(function() {
     $(".dropdown-button").dropdown();
 
+
     $.db = new Dexie('etsyDB');
     $.initDB();
 
     $.db.on('ready', function () {
-        console.log("Opened database");
-        $.listTables();
+        //$.deleteDatabase();
+        //$.listTables();
 
-        $.etsy.recentListings();
-
-        //deleteDatabase();
+        $.etsy.recentListings(updateListings);
 
         //exportDatabase(db).then(function (dbObj) {
         //    var json = JSON.stringify(dbObj);
         //    alert (json);
         //});
     });
+
+    function updateListings(listings) {
+        $.each(listings, function(index, listing) {
+            $.addListing(listing);
+        });
+    }
 });
