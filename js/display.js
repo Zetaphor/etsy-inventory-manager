@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     $.display.updateLastUpdateText = function() {
         var currentdate = new Date();
-        var datetime = "Last Refresh: " + moment().format('M/D/YY, h:mm:ss a');
+        var datetime = "Last Refresh: " + moment().format('M/D/YY, h:mm a');
 
         $('#lastUpdatedText').html(datetime);
     };
