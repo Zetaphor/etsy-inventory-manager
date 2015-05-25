@@ -1,5 +1,7 @@
 $(document).ready(function() {
     $(".dropdown-button").dropdown();
+    $('.tooltipped').tooltip({delay: 50});
+
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
 
     $.db = new Dexie('etsyDB');
@@ -20,14 +22,21 @@ $(document).ready(function() {
         $.display.switchPage(page);
     });
 
+    $('#updateRecent').on('click', function() {
+        Materialize.toast('Refreshing recent listings...', 4000);
+        $.etsy.getListings($.etsy.updateRecentListings, 0, $.etsy.recentResultsLimit);
+    });
+
+    $('#updateAll').on('click', function() {
+        Materialize.toast('Refreshing all listings...', 4000);
+        $.etsy.getListings($.etsy.updateAllListings);
+    });
+
+
+
     $.db.on('ready', function () {
         //$.etsyDB.deleteDatabase();
         //$.etsyDB.listTables();
-
-        //$.etsy.getListings($.etsy.updateRecentListings, 0, $.etsy.recentResultsLimit);
-        //$.etsy.getListings($.etsy.updateAllListings);
-
-        $.display.updateCounts();
 
         //$.etsyDB.exportDatabase().then(function (dbObj) {
         //    var json = JSON.stringify(dbObj);
