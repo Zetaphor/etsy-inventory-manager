@@ -9,17 +9,31 @@ $(document).ready(function() {
         //$.deleteDatabase();
         //$.listTables();
 
-        $.etsy.recentListings(updateListings);
+        //$.etsy.getListings(updateRecentListings, 0, $.etsy.recentResultsLimit);
+        //$.etsy.getListings(updateAllListings);
 
-        //exportDatabase(db).then(function (dbObj) {
+        //$.exportDatabase().then(function (dbObj) {
         //    var json = JSON.stringify(dbObj);
         //    alert (json);
         //});
     });
 
-    function updateListings(listings) {
-        $.each(listings, function(index, listing) {
+    function updateRecentListings(listings) {
+        $.each(listings.results, function(index, listing) {
             $.addListing(listing);
         });
+        console.log('Updated recent listings');
+    }
+
+    function updateAllListings(listings) {
+        $.each(listings.results, function(index, listing) {
+            $.addListing(listing);
+        });
+
+        if (listings.pagination.next_offset !== null) {
+            $.etsy.getListings(updateAllListings, listings.pagination.next_offset);
+        } else {
+            console.log('Updated all listings');
+        }
     }
 });

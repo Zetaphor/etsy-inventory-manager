@@ -32,7 +32,7 @@ $(document).ready(function() {
                     console.log("Added listing #" + listing.listing_id);
                 });
             } else {
-                console.log("Attempted to add duplicate listing #" + listing.listing_id + ' - ' + listing.title);
+                //console.log("Attempted to add duplicate listing #" + listing.listing_id + ' - ' + listing.title);
             }
         });
     };
@@ -49,7 +49,7 @@ $(document).ready(function() {
         });
     };
 
-    $.exportDatabase = function(db) {
+    $.exportDatabase = function() {
         return $.db.transaction('r', $.db.tables, function() {
             // Map to transaction-bound table instances because instances in $.db.tables are not bound
             // to current transaction by default (may change in future versions of Dexie)
