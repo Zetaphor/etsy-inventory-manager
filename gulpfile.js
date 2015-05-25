@@ -5,7 +5,6 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint'),
     sass = require('gulp-sass'),
     notify = require('gulp-notify'),
-    concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
