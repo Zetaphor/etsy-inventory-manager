@@ -12,7 +12,10 @@ $(document).ready(function() {
 
             product.find('.listing-id').html(val.listing_id);
             product.find('.title').html(val.title);
-            product.find('.bin-id').html(val.bin_id);
+
+            if (val.bin_id == -1) product.find('.bin-id').html("None");
+            else product.find('.bin-id').html(val.bin_id);
+            
             product.find('.price').html(val.price);
             product.find('.created').html(val.created);
             product.find('.original-created').html(val.original_creation);
