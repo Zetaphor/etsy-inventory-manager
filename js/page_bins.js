@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    $.page.bins = {};
+    $.display.page.bins = {};
 
-    $.page.bins.load = function() {
-
+    $.display.page.bins.load = function() {
+        console.log('Loaded bins');
     };
 });

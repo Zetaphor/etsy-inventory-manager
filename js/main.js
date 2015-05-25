@@ -4,6 +4,7 @@ $(document).ready(function() {
 
     $.db = new Dexie('etsyDB');
     $.etsyDB.init();
+    $.display.page.dashboard.load();
 
     $.inventory = {
         newProducts: 0,

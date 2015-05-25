@@ -2,13 +2,17 @@ $(document).ready(function() {
     $.display = {};
     $.display.pageSpeed = 300;
 
-    $.page = {};
+    $.display.page = {};
 
     $.display.switchPage = function(page) {
         $('.page').not(page).css("zIndex", 0);
         $(page).css("zIndex", 10);
 
         $(page).show();
+        var pageName = page.split('page')[1].toLowerCase();
+        
+        $.display.page[pageName].load();
+
         $('.page').not(page).animate({
             left: '-200vw'
         }, $.display.pageSpeed, function() {
