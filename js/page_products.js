@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     $.display.page.products.load = function() {
         $.display.toggleLoadingScreen($.etsy.getAllProducts($.display.page.products.drawProducts));
-        $.etsy.getAllProducts($.display.page.products.drawProducts);
     };
 
     $.display.page.products.drawProducts = function(products) {
