@@ -15,6 +15,7 @@ $(document).ready(function() {
             $.etsy.getListings($.etsy.updateAllListings, listings.pagination.next_offset, $.etsy.resultLimit);
         } else {
             console.log('Updated all listings');
+
         }
     };
 });

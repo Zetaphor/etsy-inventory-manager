@@ -16,7 +16,7 @@ $(document).ready(function() {
         //$.etsy.getListings($.etsy.updateRecentListings, 0, $.etsy.recentResultsLimit);
         //$.etsy.getListings($.etsy.updateAllListings);
 
-        updateDisplayCounts();
+        $.display.updateCounts();
 
         //$.etsyDB.exportDatabase().then(function (dbObj) {
         //    var json = JSON.stringify(dbObj);
@@ -24,21 +24,4 @@ $(document).ready(function() {
         //});
 
     });
-
-    function updateDisplayCounts() {
-        $.db.table('products').where('bin_id').equals(-1).count(function(count) {
-            $.inventory.newProducts = count;
-            $('.num-total-new').html(count);
-        });
-
-        $.db.table('bins').count(function(count) {
-            $.inventory.totalBins = count;
-            $('.num-total-bins').html(count);
-        });
-
-        $.db.table('products').count(function(count) {
-            $.inventory.totalProducts = count;
-            $('.num-total-products').html(count);
-        });
-    }
 });
