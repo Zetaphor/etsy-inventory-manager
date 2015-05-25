@@ -7,6 +7,7 @@ $(document).ready(function() {
         $.display.updateCounts();
         $.display.updateLastUpdateText();
         Materialize.toast('Successfully updated recent listings', 4000);
+        $('#syncIcon').hide();
     };
 
     $.etsy.refreshAllListings = function(listings) {
@@ -21,6 +22,7 @@ $(document).ready(function() {
             $.display.updateCounts();
             $.display.updateLastUpdateText();
             Materialize.toast('Succesfully updated all listings', 4000);
+            $('#syncIcon').hide();
         }
     };
 });

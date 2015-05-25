@@ -61,11 +61,15 @@ $(document).ready(function() {
 
     $('#refreshRecent').on('click', function() {
         Materialize.toast('Refreshing recent listings...', 4000);
+        $('#syncIcon').show();
+        $('#lastUpdatedText').html('Refreshing Recent Listings');
         $.etsy.getListings($.etsy.refreshRecentListings, 0, $.etsy.recentResultsLimit);
     });
 
     $('#refreshAll').on('click', function() {
         Materialize.toast('Refreshing all listings...', 4000);
+        $('#syncIcon').show();
+        $('#lastUpdatedText').html('Refreshing All Listings');
         $.etsy.getListings($.etsy.refreshAllListings, 0, $.etsy.resultLimit);
     });
 });

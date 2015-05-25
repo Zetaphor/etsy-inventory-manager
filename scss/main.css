@@ -1,0 +1,25 @@
+html {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden; }
+
+body {
+  margin: 0px;
+  padding: 0px; }
+
+.nav-refresh {
+  list-style: none; }
+
+#lastUpdatedText {
+  position: absolute;
+  top: -1em;
+  right: 15vw;
+  text-align: right; }
+
+#syncIcon {
+  position: absolute;
+  top: 0.5em;
+  right: 28vw;
+  display: none; }
+
+/*# sourceMappingURL=main.css.map */
