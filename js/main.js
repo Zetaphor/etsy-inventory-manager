@@ -24,12 +24,12 @@ $(document).ready(function() {
 
     $('#updateRecent').on('click', function() {
         Materialize.toast('Refreshing recent listings...', 4000);
-        $.etsy.getListings($.etsy.updateRecentListings, 0, $.etsy.recentResultsLimit);
+        $.etsy.getListings($.etsy.refreshRecentListings, 0, $.etsy.recentResultsLimit);
     });
 
     $('#updateAll').on('click', function() {
         Materialize.toast('Refreshing all listings...', 4000);
-        $.etsy.getListings($.etsy.updateAllListings);
+        $.etsy.getListings($.etsy.refreshAllListings);
     });
 
 
@@ -42,6 +42,5 @@ $(document).ready(function() {
         //    var json = JSON.stringify(dbObj);
         //    alert (json);
         //});
-
     });
 });
