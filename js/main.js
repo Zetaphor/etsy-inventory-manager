@@ -6,13 +6,23 @@ $(document).ready(function() {
 
     $.db = new Dexie('etsyDB');
     $.etsyDB.init();
-    $.display.page.dashboard.load();
 
     $.inventory = {
         newProducts: 0,
         totalBins: 0,
         totalProducts: 0
     };
+
+    $.db.on('ready', function () {
+        $.display.page.dashboard.load();
+        //$.etsyDB.deleteDatabase();
+        //$.etsyDB.listTables();
+
+        //$.etsyDB.exportDatabase().then(function (dbObj) {
+        //    var json = JSON.stringify(dbObj);
+        //    alert (json);
+        //});
+    });
 
     $('.nav-link').on('click', function(e) {
         e.preventDefault();
@@ -23,25 +33,13 @@ $(document).ready(function() {
         $.display.switchPage(page);
     });
 
-    $('#updateRecent').on('click', function() {
+    $('#refreshRecent').on('click', function() {
         Materialize.toast('Refreshing recent listings...', 4000);
         $.etsy.getListings($.etsy.refreshRecentListings, 0, $.etsy.recentResultsLimit);
     });
 
-    $('#updateAll').on('click', function() {
+    $('#refreshAll').on('click', function() {
         Materialize.toast('Refreshing all listings...', 4000);
         $.etsy.getListings($.etsy.refreshAllListings, 0, $.etsy.resultLimit);
-    });
-
-
-
-    $.db.on('ready', function () {
-        //$.etsyDB.deleteDatabase();
-        //$.etsyDB.listTables();
-
-        //$.etsyDB.exportDatabase().then(function (dbObj) {
-        //    var json = JSON.stringify(dbObj);
-        //    alert (json);
-        //});
     });
 });
