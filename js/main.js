@@ -19,6 +19,7 @@ $(document).ready(function() {
         $('.nav-link').not($(this)).parent().removeClass('active');
         $(this).parent().addClass('active');
         var page = $(this).attr('href');
+        $.display.toggleLoadingScreen();
         $.display.switchPage(page);
     });
 

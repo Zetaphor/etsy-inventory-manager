@@ -1,13 +1,18 @@
 $(document).ready(function() {
     $.display.page.products = {};
+    var productTemplate = $('#productTemplate').clone();
+    $('#productTemplate').remove();
 
     $.display.page.products.load = function() {
+        $.display.toggleLoadingScreen($.etsy.getAllProducts($.display.page.products.drawProducts));
         $.etsy.getAllProducts($.display.page.products.drawProducts);
     };
 
     $.display.page.products.drawProducts = function(products) {
+        var appendString = '';
+
         $.each(products, function(key, val) {
-            var product = $('#productTemplate').clone();
+            var product = productTemplate;
             product.removeClass('template');
 
             var product_url = product.find('.listing-url');
@@ -25,7 +30,10 @@ $(document).ready(function() {
             var original_date = new Date(val.original_creation * 1000);
             product.find('.original-created').html(original_date.toGMTString());
 
-            product.appendTo('#productsTable tbody');
+            appendString += ('<tr>' + product.html() + '</tr>');
         });
+
+        var productTableBody = document.getElementById('productTableBody');
+        productTableBody.innerHTML = appendString;
     };
 });

@@ -26,6 +26,11 @@
         </nav>
     </div>
 
+    <div id="loadingOverlay">
+        <img src="img/loading.gif">
+        <p>Loading...</p>
+    </div>
+
     <div id="pageContainer">
         <div id="pageDashboard" class="page">
             <div class="row">
@@ -49,7 +54,7 @@
         <div id="pageProducts" class="page">
             <div class="row">
                 <div class="col s10 offset-s1">
-                    <table id="productsTable">
+                    <table id="productsTable" class="striped bordered">
                         <thead>
                         <tr>
                             <th>Title</th>
@@ -60,9 +65,9 @@
                         </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="productTableBody">
                             <tr id="productTemplate" class="template">
-                                <td><a class="listing-url" href="#">Product Title</a></td>
+                                <td class="flow-text"><a class="listing-url" href="#" alt="">Product Title</a></td>
                                 <td class="bin-id">None</td>
                                 <td class="price">$5.00</td>
                                 <td class="created">Yesterday</td>

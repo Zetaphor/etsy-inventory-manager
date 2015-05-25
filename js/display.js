@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $.display = {};
     $.display.pageSpeed = 300;
+    $.display.loadingTime = 1500;
 
     $.display.page = {};
 
@@ -13,15 +14,19 @@ $(document).ready(function() {
 
         $.display.page[pageName].load();
 
-        $('.page').not(page).animate({
-            left: '-200vw'
-        }, $.display.pageSpeed, function() {
-            $(this).hide();
-        });
+        //$('.page').not(page).animate({
+        //    left: '-200vw'
+        //}, $.display.pageSpeed, function() {
+        //    $(this).hide();
+        //});
 
-        $(page).animate({
-            left: 0
-        }, $.display.pageSpeed);
+        $('.page').not(page).css({
+            left: '-200vw'
+        }).hide();
+
+        $(page).css({
+            left: '0'
+        }).show();
     };
 
     $.display.updateCounts = function() {
@@ -46,5 +51,14 @@ $(document).ready(function() {
         var datetime = "Last Refresh: " + (currentdate.getMonth()+1) + "/" + currentdate.getDate()  + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes();
 
         $('#lastUpdatedText').html(datetime);
+    };
+
+    $.display.toggleLoadingScreen = function() {
+        $('#loadingOverlay').show();
+        setTimeout(function() {
+            $('#loadingOverlay').fadeOut('slow', function() {
+                $(this).hide();
+            });
+        }, $.display.loadingTime);
     };
 });
