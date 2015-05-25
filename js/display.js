@@ -10,7 +10,7 @@ $(document).ready(function() {
 
         $(page).show();
         var pageName = page.split('page')[1].toLowerCase();
-        
+
         $.display.page[pageName].load();
 
         $('.page').not(page).animate({
