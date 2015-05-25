@@ -41,9 +41,9 @@ gulp.task('scripts', function() {
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'))
-        .on('error', notify.onError(function (error) {
-            return 'JSHint failed, see console for details';
-        }))
+        .on('error', function (error) {
+            //return 'JSHint failed, see console for details';
+        })
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .on('error', notify.onError(function (error) {

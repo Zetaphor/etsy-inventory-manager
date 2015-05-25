@@ -40,4 +40,15 @@ $(document).ready(function() {
             $('.num-total-products').html(count);
         });
     };
+
+    $.display.updateLastUpdateText = function() {
+        var currentdate = new Date();
+        var datetime = "Last Refresh: " + (currentdate.getMonth()+1) + "/"
+            + currentdate.getDate()  + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes();
+
+        $('#lastUpdatedText').html(datetime);
+    };
 });

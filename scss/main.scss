@@ -25,3 +25,10 @@ body {
 .nav-refresh {
     list-style: none;
 }
+
+#lastUpdatedText {
+    position: absolute;
+    top: -1em;
+    right: 15vw;
+    text-align: right;
+}

@@ -5,6 +5,7 @@ $(document).ready(function() {
         });
         //console.log('Updated recent listings');
         $.display.updateCounts();
+        $.display.updateLastUpdateText();
         Materialize.toast('Successfully updated recent listings', 4000);
     };
 
@@ -18,6 +19,7 @@ $(document).ready(function() {
         } else {
             //console.log('Updated all listings');
             $.display.updateCounts();
+            $.display.updateLastUpdateText();
             Materialize.toast('Succesfully updated all listings', 4000);
         }
     };
