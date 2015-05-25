@@ -2,6 +2,8 @@ $(document).ready(function() {
     $.display = {};
     $.display.pageSpeed = 300;
 
+    $.page = {};
+
     $.display.switchPage = function(page) {
         $('.page').not(page).css("zIndex", 0);
         $(page).css("zIndex", 10);
@@ -12,7 +14,7 @@ $(document).ready(function() {
         }, $.display.pageSpeed, function() {
             $(this).hide();
         });
-        
+
         $(page).animate({
             left: 0
         }, $.display.pageSpeed);

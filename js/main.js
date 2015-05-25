@@ -13,6 +13,8 @@ $(document).ready(function() {
 
     $('.nav-link').on('click', function(e) {
         e.preventDefault();
+        $('.nav-link').not($(this)).parent().removeClass('active');
+        $(this).parent().addClass('active');
         var page = $(this).attr('href');
         $.display.switchPage(page);
     });
