@@ -10,6 +10,7 @@ var jshint = require('gulp-jshint'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     fileinclude = require('gulp-file-include'),
+    concat = require('gulp-concat'),
     livereload = require('gulp-livereload');
 
 // Compile Sass
@@ -18,14 +19,12 @@ gulp.task('sass', function() {
         .pipe(sass({
             sourcemap: true,
             outputStyle: 'compressed',
-            errLogToConsole: false,
-            onError: function(err) {
-                return notify().write(err);
-            }
+            errLogToConsole: true
         }))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(autoprefixer('last 3 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(sourcemaps.write('./_sourcemaps'))
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('css'))
         //.pipe(livereload());
 });
@@ -70,7 +69,7 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
     //livereload.listen();
     //gulp.watch('**/*.html', ['html']);
-    gulp.watch('index.html', ['fileinclude']);
+    gulp.watch('**/*.html', ['fileinclude']);
     gulp.watch('js/**/*.js', ['scripts']);
     gulp.watch('scss/**/*.scss', ['sass']);
 });
