@@ -24,11 +24,9 @@ $(document).ready(function() {
 
             product.find('.price').html(val.price);
 
-            var created = new Date(val.created * 1000);
-            product.find('.created').html(created.toGMTString());
+            product.find('.created').html(moment(val.created).format('MMM D, h:mm a'));
 
-            var original_date = new Date(val.original_creation * 1000);
-            product.find('.original-created').html(original_date.toGMTString());
+            product.find('.original-created').html(moment(val.original_creation).format('MMM D, h:mm a'));
 
             appendString += ('<tr>' + product.html() + '</tr>');
         });
