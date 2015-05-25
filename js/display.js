@@ -14,12 +14,6 @@ $(document).ready(function() {
 
         $.display.page[pageName].load();
 
-        //$('.page').not(page).animate({
-        //    left: '-200vw'
-        //}, $.display.pageSpeed, function() {
-        //    $(this).hide();
-        //});
-
         $('.page').not(page).css({
             left: '-200vw'
         }).hide();
@@ -48,7 +42,7 @@ $(document).ready(function() {
 
     $.display.updateLastUpdateText = function() {
         var currentdate = new Date();
-        var datetime = "Last Refresh: " + (currentdate.getMonth()+1) + "/" + currentdate.getDate()  + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes();
+        var datetime = "Last Refresh: " + moment().format('M/D/YY, h:mm:ss a');
 
         $('#lastUpdatedText').html(datetime);
     };
