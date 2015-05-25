@@ -14,8 +14,8 @@
         </ul>
         <nav class="orange darken-3">
             <div class="nav-wrapper">
-                <ul class="">
-                    <li><a href="#pageDashboard" class="nav-link">Dashboard</a></li>
+                <ul>
+                    <li class="active"><a href="#pageDashboard" class="nav-link">Dashboard</a></li>
                     <li><a href="#pageNewProducts" class="nav-link">New Products</a></li>
                     <li><a href="#pageProducts" class="nav-link">All Products</a></li>
                     <li><a href="#pageBins" class="nav-link">Bins</a></li>
@@ -47,7 +47,33 @@
         </div>
 
         <div id="pageProducts" class="page">
-            <h2>Testing Products Page</h2>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <table id="productsTable">
+                        <thead>
+                        <tr>
+                            <th>Listing ID</th>
+                            <th>Title</th>
+                            <th>Bin ID</th>
+                            <th>Price</th>
+                            <th>Created</th>
+                            <th>Original Created</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr id="productTemplate" class="template">
+                                <td class="listing-id">1234</td>
+                                <td class="title">This is a product</td>
+                                <td class="bin-id">None</td>
+                                <td class="price">$5.00</td>
+                                <td class="created">Yesterday</td>
+                                <td class="original-created">Today</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <div id="pageNewProducts" class="page">
