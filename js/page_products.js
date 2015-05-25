@@ -10,8 +10,9 @@ $(document).ready(function() {
             var product = $('#productTemplate').clone();
             product.removeClass('template');
 
-            product.find('.listing-id').html(val.listing_id);
-            product.find('.title').html(val.title);
+            var product_url = product.find('.listing-url');
+            product_url.attr('href', 'http://www.etsy.com/listing/' + val.listing_id);
+            product_url.html(val.title);
 
             if (val.bin_id == -1) product.find('.bin-id').html("None");
             else product.find('.bin-id').html(val.bin_id);
