@@ -33,6 +33,7 @@ $(document).ready(function() {
             appendString += ('<tr>' + product.html() + '</tr>');
         });
 
+        // Try and cut some repaint time by using vanilla JS
         var productTableBody = document.getElementById('productTableBody');
         productTableBody.innerHTML = appendString;
     };

@@ -9,6 +9,7 @@ var jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
+    fileinclude = require('gulp-file-include'),
     livereload = require('gulp-livereload');
 
 // Compile Sass
@@ -35,6 +36,16 @@ gulp.task('sass', function() {
 //        .pipe(livereload());
 //});
 
+gulp.task('fileinclude', function() {
+    gulp.src(['index.html'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(rename({extname: '.min.html'}))
+        .pipe(gulp.dest('./'));
+});
+
 // Compile JS
 gulp.task('scripts', function() {
     return gulp.src(['js/**/*.js', '!js/min/**/*'])
@@ -59,9 +70,10 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
     //livereload.listen();
     //gulp.watch('**/*.html', ['html']);
+    gulp.watch('index.html', ['fileinclude']);
     gulp.watch('js/**/*.js', ['scripts']);
     gulp.watch('scss/**/*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['sass', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'scripts', 'fileinclude', 'watch']);
