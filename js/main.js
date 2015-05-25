@@ -4,10 +4,25 @@ $(document).ready(function() {
 
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
 
+    $.settings = {
+        lastRefresh: 'Never'
+    };
+
+    $.saveSettings = function() {
+        localStorage.setItem('settings', JSON.stringify($.settings));
+        console.log('Saved settings');
+    };
+
+    $.loadSettings = function() {
+        $.display.updateLastUpdateText($.settings.lastRefresh);
+    };
+
     if (localStorage.getItem('settings') === null) {
         localStorage.setItem('settings', JSON.stringify($.settings));
+        $.loadSettings();
     } else {
-        $.settings = localStorage.getItem('settings');
+        $.settings = JSON.parse(localStorage.getItem('settings'));
+        $.loadSettings();
     }
 
     $.db = new Dexie('etsyDB');
@@ -19,18 +34,9 @@ $(document).ready(function() {
         totalProducts: 0
     };
 
-    $.settings = {
-        lastRefresh: 'Never'
-    };
-
     $(window).unload(function() {
         $.settings.save();
     });
-
-    $.saveSettings = function() {
-        localStorage.setItem('settings', JSON.stringify($.settings));
-        console.log('Saved settings');
-    };
 
     $.db.on('ready', function () {
         $.display.page.dashboard.load();

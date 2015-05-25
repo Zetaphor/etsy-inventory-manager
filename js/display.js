@@ -6,8 +6,8 @@ $(document).ready(function() {
     $.display.page = {};
 
     $.display.switchPage = function(page) {
-        $('.page').not(page).css("zIndex", 0);
-        $(page).css("zIndex", 10);
+        $('.page').not(page).css('Index', 0);
+        $(page).css('Index', 10);
 
         $(page).show();
         var pageName = page.split('page')[1].toLowerCase();
@@ -43,9 +43,9 @@ $(document).ready(function() {
     $.display.updateLastUpdateText = function(time) {
         if (typeof time == 'undefined') {
             time = moment().format('M/D/YY, h:mm a');
-            $('#lastUpdatedText').html("Last Refresh: " + time);
+            $('#lastUpdatedText').html('Last Refresh: ' + time);
         } else {
-            $('#lastUpdatedText').html(time);
+            $('#lastUpdatedText').html('Last Refresh: ' + time);
         }
         $.settings.lastRefresh = time;
         $.saveSettings();
