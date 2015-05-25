@@ -1,12 +1,13 @@
 $(document).ready(function() {
-    $.initDB = function() {
+    $.etsyDB = {};
+    $.etsyDB.init = function() {
         Dexie.getDatabaseNames(function(databases) {
             if (databases.indexOf('etsyDB') == -1) $.createDB();
             else $.db.open();
         });
     };
 
-    $.createDB = function() {
+    $.etsyDB.create = function() {
         $.db.version(1).stores(
             {
                 products: '++id, bin_id, listing_id, title, categories, price, created, original_created',
@@ -17,7 +18,7 @@ $(document).ready(function() {
         $.db.open();
     };
 
-    $.addListing = function(listing) {
+    $.etsyDB.addListing = function(listing) {
         $.db.table('products').where("listing_id").equals(listing.listing_id).count(function(count) {
             if (count === 0) {
                 $.db.table('products').add({
@@ -37,19 +38,19 @@ $(document).ready(function() {
         });
     };
 
-    $.listTables = function() {
+    $.etsyDB.listTables = function() {
         $.db.tables.forEach(function (table, i) {
             console.log('Table ' + i + ": " + table.name);
         });
     };
 
-    $.deleteDatabase = function() {
+    $.etsyDB.deleteDB = function() {
         $.db.delete().then(function() {
             console.log('Deleted database');
         });
     };
 
-    $.exportDatabase = function() {
+    $.etsyDB.export = function() {
         return $.db.transaction('r', $.db.tables, function() {
             // Map to transaction-bound table instances because instances in $.db.tables are not bound
             // to current transaction by default (may change in future versions of Dexie)

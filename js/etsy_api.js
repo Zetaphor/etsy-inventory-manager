@@ -2,8 +2,8 @@ $(document).ready(function() {
     $.etsy = {};
     $.etsy.apiURL = "https://openapi.etsy.com/v2/";
     $.etsy.apiKey = "tpgge44ziiwldztbd8hx7b1r";
-    $.etsy.recentResultsLimit = 5;
-    $.etsy.maxResults = 100;
+    $.etsy.recentResultsLimit = 20;
+    $.etsy.resultLimit = 100;
     $.etsy.storeName = 'JessicaAnnsEmporium';
     $.etsy.listingParams = {
         fields: [
