@@ -2,7 +2,7 @@ $(document).ready(function() {
     $.etsyDB = {};
     $.etsyDB.init = function() {
         Dexie.getDatabaseNames(function(databases) {
-            if (databases.indexOf('etsyDB') == -1) $.createDB();
+            if (databases.indexOf('etsyDB') == -1) $.etsyDB.create();
             else $.db.open();
         });
     };

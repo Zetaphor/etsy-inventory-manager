@@ -41,7 +41,7 @@ $(document).ready(function() {
 
     $.db.on('ready', function () {
         $.display.page.dashboard.load();
-        //$.etsyDB.deleteDatabase();
+        //$.etsyDB.deleteDB();
         //$.etsyDB.listTables();
 
         //$.etsyDB.exportDatabase().then(function (dbObj) {
