@@ -24,9 +24,15 @@ $(document).ready(function() {
 
             product.find('.price').html(val.price);
 
+<<<<<<< HEAD
             product.find('.created').html(moment(val.created).format('MMM D, h:mm a'));
 
             product.find('.original-created').html(moment(val.original_creation).format('MMM D, h:mm a'));
+=======
+            product.find('.created').html(moment(val.created).format('MMMM Do YYYY, h:mm:ss a'));
+
+            product.find('.original-created').html(moment(val.original_creation).format('MMMM Do YYYY, h:mm:ss a'));
+>>>>>>> 9fb1ea3613f22eab28417167099ea657221967e5
 
             appendString += ('<tr>' + product.html() + '</tr>');
         });
