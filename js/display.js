@@ -40,11 +40,15 @@ $(document).ready(function() {
         });
     };
 
-    $.display.updateLastUpdateText = function() {
-        var currentdate = new Date();
-        var datetime = "Last Refresh: " + moment().format('M/D/YY, h:mm a');
-
-        $('#lastUpdatedText').html(datetime);
+    $.display.updateLastUpdateText = function(time) {
+        if (typeof time == 'undefined') {
+            time = moment().format('M/D/YY, h:mm a');
+            $('#lastUpdatedText').html("Last Refresh: " + time);
+        } else {
+            $('#lastUpdatedText').html(time);
+        }
+        $.settings.lastRefresh = time;
+        $.saveSettings();
     };
 
     $.display.toggleLoadingScreen = function() {

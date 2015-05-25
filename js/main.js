@@ -4,6 +4,12 @@ $(document).ready(function() {
 
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
 
+    if (localStorage.getItem('settings') === null) {
+        localStorage.setItem('settings', JSON.stringify($.settings));
+    } else {
+        $.settings = localStorage.getItem('settings');
+    }
+
     $.db = new Dexie('etsyDB');
     $.etsyDB.init();
 
@@ -11,6 +17,19 @@ $(document).ready(function() {
         newProducts: 0,
         totalBins: 0,
         totalProducts: 0
+    };
+
+    $.settings = {
+        lastRefresh: 'Never'
+    };
+
+    $(window).unload(function() {
+        $.settings.save();
+    });
+
+    $.saveSettings = function() {
+        localStorage.setItem('settings', JSON.stringify($.settings));
+        console.log('Saved settings');
     };
 
     $.db.on('ready', function () {
