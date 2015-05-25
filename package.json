@@ -1,0 +1,30 @@
+{
+  "name": "etsy-inventory-manager",
+  "version": "0.0.0",
+  "description": "Manage Etsy Inventory",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Zetaphor/etsy-inventory-manager.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Zetaphor/etsy-inventory-manager.git/issues"
+  },
+  "devDependencies": {
+    "gulp-rename": "~1.2.2",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-concat": "~2.5.2",
+    "gulp-uglify": "~1.2.0",
+    "gulp-autoprefixer": "~2.2.0",
+    "gulp-notify": "~2.2.0",
+    "gulp-jshint": "~1.10.0",
+    "gulp-sass": "~2.0.0",
+    "gulp-livereload": "~3.8.0",
+    "jshint-stylish": "~1.0.2",
+    "jquery": "~2.1.4",
+    "materialize-css": "~0.96.1",
+    "jquery-mobile": "~1.4.1"
+  }
+}

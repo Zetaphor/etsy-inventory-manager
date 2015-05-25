@@ -1,0 +1,68 @@
+// Include gulp
+var gulp = require('gulp');
+
+// Include Our Plugins
+var jshint = require('gulp-jshint'),
+    sass = require('gulp-sass'),
+    notify = require('gulp-notify'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer'),
+    livereload = require('gulp-livereload');
+
+// Compile Sass
+gulp.task('sass', function() {
+    return gulp.src('scss/**/*.scss')
+        .pipe(sass({
+            sourcemap: true,
+            outputStyle: 'compressed',
+            errLogToConsole: false,
+            onError: function(err) {
+                return notify().write(err);
+            }
+        }))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(autoprefixer('last 3 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        .pipe(sourcemaps.write('./_sourcemaps'))
+        .pipe(gulp.dest('css'))
+        //.pipe(livereload());
+});
+
+// Livereload HTML files
+//gulp.task('html', function() {
+//    gulp.src(['**/*.html', '!lib/**/*', '!node_modules/**/*'])
+//        .pipe(livereload());
+//});
+
+// Compile JS
+gulp.task('scripts', function() {
+    return gulp.src(['js/**/*.js', '!js/min/**/*'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'))
+        .on('error', notify.onError(function (error) {
+            return 'JSHint failed, see console for details';
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .on('error', notify.onError(function (error) {
+            return error.message;
+        }))
+        .pipe(rename({extname: '.min.js'}))
+        .pipe(sourcemaps.write('./_sourcemaps'))
+        .pipe(gulp.dest('js/min'))
+        //.pipe(livereload());
+});
+
+// Watch files for changes
+gulp.task('watch', function() {
+    //livereload.listen();
+    gulp.watch('**/*.html', ['html']);
+    gulp.watch('js/**/*.js', ['scripts']);
+    gulp.watch('scss/**/*.scss', ['sass']);
+});
+
+// Default Task
+gulp.task('default', ['sass', 'scripts', 'watch']);
