@@ -1,5 +1,22 @@
 $(document).ready(function() {
     $.display = {};
+    $.display.pageSpeed = 300;
+
+    $.display.switchPage = function(page) {
+        $('.page').not(page).css("zIndex", 0);
+        $(page).css("zIndex", 10);
+
+        $(page).show();
+        $('.page').not(page).animate({
+            left: '-200vw'
+        }, $.display.pageSpeed, function() {
+            $(this).hide();
+        });
+        
+        $(page).animate({
+            left: 0
+        }, $.display.pageSpeed);
+    };
 
     $.display.updateCounts = function() {
         $.db.table('products').where('bin_id').equals(-1).count(function(count) {

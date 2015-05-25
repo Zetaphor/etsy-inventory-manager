@@ -1,5 +1,7 @@
 $(document).ready(function() {
     $(".dropdown-button").dropdown();
+    $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
+
     $.db = new Dexie('etsyDB');
     $.etsyDB.init();
 
@@ -8,6 +10,12 @@ $(document).ready(function() {
         totalBins: 0,
         totalProducts: 0
     };
+
+    $('.nav-link').on('click', function(e) {
+        e.preventDefault();
+        var page = $(this).attr('href');
+        $.display.switchPage(page);
+    });
 
     $.db.on('ready', function () {
         //$.etsyDB.deleteDatabase();
