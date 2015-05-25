@@ -1,7 +1,29 @@
 <div id="pageBins" class="page">
+    <div id="modalCreateBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Create New Bin</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="bin_name" type="text" class="validate" required="required">
+                    <label for="bin_name">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="bin_notes" class="materialize-textarea"></textarea>
+                    <label for="bin_notes">Notes</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="createBin">Create</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col s12">
-            <a class="waves-effect waves-light btn light-blue"><i class="mdi-av-my-library-add left"></i>Create Bin</a>
+            <a href="#modalCreateBin" class="waves-effect waves-light btn light-blue modal-trigger"><i class="mdi-av-my-library-add left"></i>Create Bin</a>
         </div>
     </div>
     <div class="row">

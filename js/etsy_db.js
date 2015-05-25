@@ -89,9 +89,25 @@ $(document).ready(function() {
         });
     };
 
-    $.etsy.getBins = function(callback) {
+    $.etsyDB.getAllBins = function(callback) {
         $.db.table('bins').toArray().then(function(data) {
             callback(data);
+        });
+    };
+
+    $.etsyDB.createBin = function(name, notes) {
+        $.db.table('bins').where("name").equals(name).count(function(count) {
+            if (count === 0) {
+                $.db.table('bins').add({
+                    name: name,
+                    notes: notes
+                }).then(function () {
+                    Materialize.toast("Created bin '" + name + "' succesfully", 4000);
+                    $.display.updateCounts();
+                });
+            } else {
+                Materialize.toast("Bin '" + name + "' already exists!", 4000);
+            }
         });
     };
 });

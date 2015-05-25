@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $(".dropdown-button").dropdown();
     $('.tooltipped').tooltip({delay: 50});
+    $('.modal-trigger').leanModal();
 
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
 
