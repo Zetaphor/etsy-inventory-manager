@@ -10,13 +10,13 @@ $(document).ready(function() {
 
     $.display.page.bins.drawBins = function(bins) {
         var appendString = '';
-
         $.each(bins, function(key, val) {
             var bin = binTemplate;
             bin.removeClass('template');
 
             bin.find('.bin_id').html(val.id);
             bin.find('.bin-name').html(val.name);
+            bin.find('.bin-total').html(val.total);
             bin.find('.bin-notes').html(val.notes);
 
             appendString += ('<tr>' + bin.html() + '</tr>');

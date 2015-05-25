@@ -18,26 +18,6 @@ $(document).ready(function() {
         $.db.open();
     };
 
-    $.etsyDB.addListing = function(listing) {
-        $.db.table('products').where("listing_id").equals(listing.listing_id).count(function(count) {
-            if (count === 0) {
-                $.db.table('products').add({
-                    bin_id: -1,
-                    listing_id: listing.listing_id,
-                    title: listing.title,
-                    categories: listing.category_path.toString(),
-                    price: listing.price,
-                    created: listing.creation_tsz,
-                    original_creation: listing.original_creation_tsz
-                }).then(function() {
-                    console.log("Added listing #" + listing.listing_id);
-                });
-            } else {
-                //console.log("Attempted to add duplicate listing #" + listing.listing_id + ' - ' + listing.title);
-            }
-        });
-    };
-
     $.etsyDB.listTables = function() {
         $.db.tables.forEach(function (table, i) {
             console.log('Table ' + i + ": " + table.name);
@@ -77,6 +57,26 @@ $(document).ready(function() {
         });
     };
 
+    $.etsyDB.addListing = function(listing) {
+        $.db.table('products').where("listing_id").equals(listing.listing_id).count(function(count) {
+            if (count === 0) {
+                $.db.table('products').add({
+                    bin_id: -1,
+                    listing_id: listing.listing_id,
+                    title: listing.title,
+                    categories: listing.category_path.toString(),
+                    price: listing.price,
+                    created: listing.creation_tsz,
+                    original_creation: listing.original_creation_tsz
+                }).then(function() {
+                    console.log("Added listing #" + listing.listing_id);
+                });
+            } else {
+                //console.log("Attempted to add duplicate listing #" + listing.listing_id + ' - ' + listing.title);
+            }
+        });
+    };
+
     $.etsyDB.getNewProducts = function(callback) {
         $.db.table('products').where("bin_id").equals(-1).toArray().then(function(data) {
             callback(data);
@@ -90,8 +90,14 @@ $(document).ready(function() {
     };
 
     $.etsyDB.getAllBins = function(callback) {
-        $.db.table('bins').toArray().then(function(data) {
-            callback(data);
+        var bins = [];
+        $.db.table('bins').each(function(bin) {
+            $.db.table('products').where("bin_id").equals(bin.id).count(function(count) {
+                bin.total = count;
+                bins.push(bin);
+            });
+        }).then(function() {
+            callback(bins);
         });
     };
 
