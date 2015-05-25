@@ -1,9 +1,9 @@
 .page {
     position: absolute;
-    top: 0;
+    padding-top: 1em;
     left: 0;
     width: 100vw;
-    height: 95vh; 
+    height: 95vh;
     border-right: 2px solid #000000;
     //    overflow-x: hidden;
     overflow-y: scroll;
@@ -14,7 +14,6 @@
 }
 
 #pageContainer {
-    margin-top: 1em;
     position: relative;
 }
 
