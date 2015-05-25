@@ -15,7 +15,7 @@ $(document).ready(function() {
         });
 
         if (listings.pagination.next_offset !== null) {
-            $.etsy.getListings($.etsy.updateAllListings, listings.pagination.next_offset, $.etsy.resultLimit);
+            $.etsy.getListings($.etsy.refreshAllListings, listings.pagination.next_offset, $.etsy.resultLimit);
         } else {
             //console.log('Updated all listings');
             $.display.updateCounts();

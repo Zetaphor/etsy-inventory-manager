@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     $('#updateAll').on('click', function() {
         Materialize.toast('Refreshing all listings...', 4000);
-        $.etsy.getListings($.etsy.refreshAllListings);
+        $.etsy.getListings($.etsy.refreshAllListings, 0, $.etsy.resultLimit);
     });
 
 

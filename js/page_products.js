@@ -15,10 +15,14 @@ $(document).ready(function() {
 
             if (val.bin_id == -1) product.find('.bin-id').html("None");
             else product.find('.bin-id').html(val.bin_id);
-            
+
             product.find('.price').html(val.price);
-            product.find('.created').html(val.created);
-            product.find('.original-created').html(val.original_creation);
+
+            var created = new Date(val.created * 1000);
+            product.find('.created').html(created.toGMTString());
+
+            var original_date = new Date(val.original_creation * 1000);
+            product.find('.original-created').html(original_date.toGMTString());
 
             product.appendTo('#productsTable tbody');
         });
