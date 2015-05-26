@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#binTemplate').remove();
 
     $.display.page.bins.load = function() {
-        $.display.toggleLoadingScreen($.etsyDB.getAllBins($.display.page.bins.drawBins));
+        $.display.toggleLoadingScreen($.etsyDB.bins.getAll($.display.page.bins.drawBins));
     };
 
     $.display.page.bins.drawBins = function(bins) {
@@ -49,7 +49,7 @@ $(document).ready(function() {
         if (bin_name === '') Materialize.toast('Please enter a bin name', 4000);
         else {
             $('#modalCreateBin').closeModal();
-            $.etsyDB.createBin(bin_name, bin_notes, null);
+            $.etsyDB.bins.add(bin_name, bin_notes, null);
             $('#bin_name').val('');
             $('#bin_notes').val('');
         }
@@ -69,6 +69,6 @@ $(document).ready(function() {
 
     $('#confirmDeleteBin').on('click', function() {
         $('#modalDeleteBin').closeModal();
-        $.etsyDB.deleteBin(parseInt($('#binDeleteID').html()), $('.binDeleteName').html());
+        $.etsyDB.bins.delete(parseInt($('#binDeleteID').html()), $('.binDeleteName').html());
     });
 });

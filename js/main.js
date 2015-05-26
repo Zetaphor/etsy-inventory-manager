@@ -26,7 +26,6 @@ $(document).ready(function() {
         $.loadSettings();
     }
 
-    $.db = new Dexie('etsyDB');
     $.etsyDB.init();
 
     $.inventory = {
@@ -44,7 +43,7 @@ $(document).ready(function() {
         //$.etsyDB.deleteDB();
         //$.etsyDB.listTables();
 
-        //$.etsyDB.exportDatabase().then(function (dbObj) {
+        //$.etsyDB.export().then(function (dbObj) {
         //    var json = JSON.stringify(dbObj);
         //    alert (json);
         //});
@@ -63,13 +62,13 @@ $(document).ready(function() {
         Materialize.toast('Refreshing recent listings...', 4000);
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing Recent Listings');
-        $.etsy.getListings($.etsy.refreshRecentListings, 0, $.etsy.recentResultsLimit);
+        $.etsyAPIHelper.getRecentListings();
     });
 
     $('#refreshAll').on('click', function() {
         Materialize.toast('Refreshing all listings...', 4000);
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing All Listings');
-        $.etsy.getListings($.etsy.refreshAllListings, 0, $.etsy.resultLimit);
+        $.etsyAPIHelper.getAllListings();
     });
 });
