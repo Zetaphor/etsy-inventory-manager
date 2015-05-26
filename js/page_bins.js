@@ -69,8 +69,6 @@ $(document).ready(function() {
 
     $('#confirmDeleteBin').on('click', function() {
         $('#modalDeleteBin').closeModal();
-        $.db.table('bins').where("id").equals(parseInt($('#binDeleteID').html())).delete().then(function() {
-            Materialize.toast('Bin #' + $('#binDeleteID').html() + " - '" + $('.binDeleteName').html() + "' deleted succesfully", 4000);
-        });
+        $.etsyDB.deleteBin(parseInt($('#binDeleteID').html()), $('.binDeleteName').html());
     });
 });

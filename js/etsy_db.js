@@ -116,4 +116,10 @@ $(document).ready(function() {
             }
         });
     };
+
+    $.etsyDB.deleteBin = function(bin_id, bin_name) {
+        $.db.table('bins').where("id").equals(bin_id).delete().then(function() {
+            Materialize.toast('Bin #' + bin_id + " - '" + bin_name + "' deleted succesfully", 4000);
+        });
+    };
 });
