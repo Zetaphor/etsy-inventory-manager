@@ -19,6 +19,17 @@ $(document).ready(function() {
             bin.find('.bin-total').html(val.total);
             bin.find('.bin-notes').html(val.notes);
 
+            var bin_actions = bin.find('.bin-actions');
+            bin_actions.find('.btn-remove-bin').attr({
+                "bin-id": val.id.toString(),
+                "bin-name": val.name
+            });
+
+            bin_actions.find('.btn-edit-bin').attr({
+                "bin-id": val.id.toString(),
+                "bin-name": val.name
+            });
+
             appendString += ('<tr>' + bin.html() + '</tr>');
         });
 
@@ -43,4 +54,14 @@ $(document).ready(function() {
             $('#bin_notes').val('');
         }
     });
+
+    $('body').on('click', '.btn-edit-bin', function() {
+        console.log($(this).attr('bin-id'));
+    });
+
+    $('body').on('click', '.btn-remove-bin', function() {
+        console.log($(this).attr('bin-id'));
+    });
+
+
 });

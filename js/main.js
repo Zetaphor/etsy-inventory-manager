@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     $.saveSettings = function() {
         localStorage.setItem('settings', JSON.stringify($.settings));
-        console.log('Saved settings');
+        //console.log('Saved settings');
     };
 
     $.loadSettings = function() {
