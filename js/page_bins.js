@@ -57,10 +57,13 @@ $(document).ready(function() {
 
     $('body').on('click', '.btn-edit-bin', function() {
         console.log($(this).attr('bin-id'));
+        console.log($(this).attr('bin-name'));
     });
 
     $('body').on('click', '.btn-remove-bin', function() {
         console.log($(this).attr('bin-id'));
+        console.log($(this).attr('bin-name'));
+        $('#modalDeleteBin').openModal();
     });
 
 
