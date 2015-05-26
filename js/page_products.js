@@ -7,6 +7,10 @@ $(document).ready(function() {
         $.display.toggleLoadingScreen($.etsyDB.getAllProducts($.display.page.products.drawProducts));
     };
 
+    $('#reloadProducts').on('click', function() {
+        $.display.page.products.load();
+    });
+
     $.display.page.products.drawProducts = function(products) {
         var appendString = '';
 
@@ -16,6 +20,7 @@ $(document).ready(function() {
 
             var product_url = product.find('.listing-url');
             product_url.attr('href', 'http://www.etsy.com/listing/' + val.listing_id);
+            product_url.attr('title', val.title);
             product_url.html(val.title);
 
             if (val.bin_id == -1) product.find('.bin-id').html("None");
