@@ -27,6 +27,10 @@ $(document).ready(function() {
         binsTableBody.innerHTML = appendString;
     };
 
+    $('#reloadBins').on('click', function() {
+        $.display.page.bins.load();
+    });
+
     $('#createBin').on('click', function() {
         var bin_name = $('#bin_name').val();
         var bin_notes = $('#bin_notes').val();
