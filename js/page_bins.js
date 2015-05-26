@@ -13,8 +13,7 @@ $(document).ready(function() {
         $.each(bins, function(key, val) {
             var bin = binTemplate;
             bin.removeClass('template');
-
-            bin.find('.bin_id').html(val.id);
+            bin.find('.bin-id').html(val.id);
             bin.find('.bin-name').html(val.name);
             bin.find('.bin-total').html(val.total);
             bin.find('.bin-notes').html(val.notes);
@@ -27,7 +26,8 @@ $(document).ready(function() {
 
             bin_actions.find('.btn-edit-bin').attr({
                 "bin-id": val.id.toString(),
-                "bin-name": val.name
+                "bin-name": val.name,
+                "bin-total": val.total
             });
 
             appendString += ('<tr>' + bin.html() + '</tr>');
@@ -61,10 +61,16 @@ $(document).ready(function() {
     });
 
     $('body').on('click', '.btn-remove-bin', function() {
-        console.log($(this).attr('bin-id'));
-        console.log($(this).attr('bin-name'));
+        $('.binDeleteName').html($(this).attr('bin-name'));
+        $('#binDeleteID').html($(this).attr('bin-id'));
+        $('.binDeleteTotal').html($(this).attr('bin-total'));
         $('#modalDeleteBin').openModal();
     });
 
-
+    $('#confirmDeleteBin').on('click', function() {
+        $('#modalDeleteBin').closeModal();
+        $.db.table('bins').where("id").equals(parseInt($('#binDeleteID').html())).delete().then(function() {
+            Materialize.toast('Bin #' + $('#binDeleteID').html() + " - '" + $('.binDeleteName').html() + "' deleted succesfully", 4000);
+        });
+    });
 });
