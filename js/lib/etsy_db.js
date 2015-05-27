@@ -119,7 +119,7 @@ $(document).ready(function() {
                             name: name,
                             notes: notes
                         }).then(function () {
-                            Materialize.toast("Created bin '" + name + "' succesfully", 4000);
+                            Materialize.toast("Created bin '" + name + "' successfully", 4000);
                             $.display.updateCounts();
                         });
                     } else {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 
             delete: function(bin_id, bin_name) {
                 $.db.table('bins').where("id").equals(bin_id).delete().then(function() {
-                    Materialize.toast('Bin #' + bin_id + " - '" + bin_name + "' deleted succesfully", 4000);
+                    Materialize.toast('Bin #' + bin_id + " - '" + bin_name + "' deleted successfully", 4000);
                 });
             }
         }
