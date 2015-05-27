@@ -3,8 +3,13 @@ $(document).ready(function() {
         init: function() {
             $.db = new Dexie('etsyDB');
             Dexie.getDatabaseNames(function(databases) {
-                if (databases.indexOf('etsyDB') == -1) $.etsyDB.create();
-                else $.db.open();
+                if (databases.indexOf('etsyDB') == -1) {
+                    $.etsyDB.create();
+                }
+                else {
+                    $.db.open();
+                    $.etsyApp.settings.firstRun = false;
+                }
             });
         },
 

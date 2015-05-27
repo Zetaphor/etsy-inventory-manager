@@ -46,8 +46,8 @@ $(document).ready(function() {
             } else {
                 $('#lastUpdatedText').html('Last Refresh: ' + time);
             }
-            $.settings.lastRefresh = time;
-            $.saveSettings();
+            $.etsyApp.settings.lastRefresh = time;
+            $.etsyApp.saveSettings();
         },
 
         toggleLoadingScreen: function() {
