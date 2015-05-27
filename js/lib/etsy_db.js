@@ -8,7 +8,6 @@ $(document).ready(function() {
                 }
                 else {
                     $.db.open();
-                    $.etsyApp.settings.firstRun = false;
                 }
             });
         },
@@ -33,6 +32,9 @@ $(document).ready(function() {
         delete: function() {
             $.db.delete().then(function() {
                 console.log('Deleted database');
+
+                // This is required, it seems that Dexie is only deleting the tables
+                indexedDB.deleteDatabase("etsyDB");
             });
         },
 

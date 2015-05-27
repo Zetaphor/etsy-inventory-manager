@@ -29,12 +29,12 @@ $(document).ready(function() {
             console.log('Welcome to the first time!');
         },
 
-        appStart: function(first_run) {
-            first_run = typeof first_run !== 'undefined' ? first_run : false;
-
+        appStart: function() {
             $.display.page.dashboard.load();
-
-            if (first_run) $.etsyApp.appFirstRun();
+            if ($.etsyApp.settings.firstRun) {
+                $.etsyApp.settings.firstRun = false;
+                $.etsyApp.appFirstRun();
+            }
 
             //$.etsyDB.delete();
             //$.etsyDB.listTables();
