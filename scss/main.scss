@@ -13,16 +13,42 @@ body {
     list-style: none;
 }
 
-#lastUpdatedText {
-    position: absolute;
-    top: -1em;
-    right: 15vw;
-    text-align: right;
+.navbar-fixed {
+    position: relative;
 }
 
-#syncIcon {
+nav ul a {
+    border-right: 1px solid #bdbdbd;
+}
+
+#settingsButton, #lastUpdatedText, #refreshOverlay, #lastUpdatedText, #syncIcon {
     position: absolute;
+}
+
+#settingsButton {
+    top: -1em;
+    right: 1em;
+}
+
+#lastUpdatedText {
+    top: -1em;
+    left: 4em;
+}
+
+#refreshOverlay {
+    top: 0;
+    left: 40%;
+    min-width: 16%;
+}
+
+
+#syncIcon {
     top: 0.5em;
-    right: 28vw;
     display: none;
+    right: 0;
+}
+
+// Override Materialize overlay
+#lean-overlay {
+    z-index: 990 !important;
 }

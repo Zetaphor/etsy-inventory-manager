@@ -13,27 +13,39 @@
         <li><a id="refreshRecent" href="#!">Recent</a></li>
         <li><a id="refreshAll" href="#!">All</a></li>
     </ul>
+
+    <div id="modalSettings" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
+        <div class="modal-content">
+            <h4><i class="mdi-action-settings left"></i> Settings</h4>
+
+        </div>
+    </div>
+
     <nav class="orange darken-3">
         <div class="nav-wrapper">
             <ul>
-                <li class="active"><a href="#pageDashboard" class="nav-link">Dashboard</a></li>
-                <li><a href="#pageNewProducts" class="nav-link">New Products</a></li>
-                <li><a href="#pageProducts" class="nav-link">All Products</a></li>
-                <li><a href="#pageBins" class="nav-link">Bins</a></li>
+                <li class="active"><a href="#pageDashboard" class="nav-link"><i class="mdi-action-dashboard tiny right"></i> Dashboard</a></li>
+                <li><a href="#pageNewProducts" class="nav-link"><i class="mdi-av-new-releases right"></i> New Products</a></li>
+                <li><a href="#pageProducts" class="nav-link"><i class="mdi-action-info right"></i> All Products</a></li>
+                <li><a href="#pageBins" class="nav-link"><i class="mdi-content-inbox right"></i> Bins</a></li>
+                <li class="nav-refresh"><a class="dropdown-button" href="#!" data-activates="refreshDropdown"> Refresh Listings<i class="mdi-notification-sync left"></i></a></li>
             </ul>
-            <li class="right-align nav-refresh"><a class="dropdown-button" href="#!" data-activates="refreshDropdown">Refresh Listings<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-            <div class="preloader-wrapper active" id="syncIcon">
-                <div class="spinner-layer spinner-yellow-only">
-                    <div class="circle-clipper left">
+
+            <div id="refreshOverlay">
+                <p id="lastUpdatedText">Last Refresh: Never</p>
+                <div class="preloader-wrapper active" id="syncIcon">
+                    <div class="spinner-layer spinner-yellow-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
                         <div class="circle"></div>
-                    </div><div class="gap-patch">
-                    <div class="circle"></div>
-                </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
                 </div>
             </div>
-            <p id="lastUpdatedText">Last Updated: Never</p>
+            <p id="settingsButton"><a href="#modalSettings" class="modal-trigger"><i class="mdi-action-settings right"></i> Settings</a></p>
         </div>
     </nav>
 </div>

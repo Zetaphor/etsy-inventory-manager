@@ -1,0 +1,43 @@
+html {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden; }
+
+body {
+  margin: 0px;
+  padding: 0px; }
+
+.nav-refresh {
+  list-style: none; }
+
+.navbar-fixed {
+  position: relative; }
+
+nav ul a {
+  border-right: 1px solid #bdbdbd; }
+
+#settingsButton, #lastUpdatedText, #refreshOverlay, #lastUpdatedText, #syncIcon {
+  position: absolute; }
+
+#settingsButton {
+  top: -1em;
+  right: 1em; }
+
+#lastUpdatedText {
+  top: -1em;
+  left: 4em; }
+
+#refreshOverlay {
+  top: 0;
+  left: 40%;
+  min-width: 16%; }
+
+#syncIcon {
+  top: 0.5em;
+  display: none;
+  right: 0; }
+
+#lean-overlay {
+  z-index: 990 !important; }
+
+/*# sourceMappingURL=main.css.map */
