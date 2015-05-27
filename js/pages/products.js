@@ -23,7 +23,7 @@ $(document).ready(function() {
             product_url.attr('title', val.title);
             product_url.html(val.title);
 
-            if (val.bin_id == -1) product.find('.bin-id').html("None");
+            if (val.bin_id == -1) product.find('.bin-id').html('<i class="mdi-content-clear"></i>');
             else product.find('.bin-id').html(val.bin_id);
 
             product.find('.price').html(val.price);
