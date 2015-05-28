@@ -13,7 +13,9 @@ $(document).ready(function() {
                 bin.find('.bin-id').html(val.id);
                 bin.find('.bin-name').html(val.name);
                 bin.find('.bin-total').html(val.total);
-                bin.find('.bin-notes').html(val.notes);
+                bin.find('.bin-notes')
+                    .html(val.notes)
+                    .attr('title', val.notes);
 
                 var bin_actions = bin.find('.bin-actions');
                 bin_actions.find('.btn-floating').attr({
