@@ -75,35 +75,31 @@ $(document).ready(function() {
     });
 
     $('input[type=radio][name=label-size]').on('change', function() {
-        var id = $(this).attr('id');
-        if (id == 'custom') {
-            console.log('custom');
-            $('.input-label-size').fadeIn('slow');
-        } else {
-            $('.input-label-size').fadeOut('slow');
-            console.log('Standard size');
-        }
+        $('#labelSize').val($.display.labelSizes[$(this).attr('id')]);
     });
 
     $('#printBin').on('click', function() {
         $('#modalPrintBinLabel').closeModal();
-        var printWindow = window.open('', "Test Window", "height=600,width=800");
-        var windowContent = printWindow.document.body;
+        var labelSize = $('#labelSize').val(),
+            printWindow = window.open('', "Test Window", "height=600,width=800"),
+            windowContent = printWindow.document.body;
         windowContent.title = 'Test';
         $(windowContent).html($('#printPreview').html());
+        $(windowContent).find('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), labelSize));
+
         $(windowContent).find('#previewImage').css({
             position: 'relative',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '50%' // Change this to the set width
+            width: labelSize + 'px'
         });
         $(windowContent).find('#previewTitle').css({
             position: 'relative',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '50%', // Change this to the set width
+            width: labelSize + 'px',
             textAlign: 'center',
-            top: '-1em',
+            top: '-0.5em',
             fontSize: '2em',
             fontWeight: 'bold',
             wordWrap: 'break-word'

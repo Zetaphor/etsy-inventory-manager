@@ -5,9 +5,9 @@ $(document).ready(function() {
         page: {},
 
         labelSizes: {
-            large: 200,
-            medium: 100,
-            small: 50
+            large: 500,
+            medium: 250,
+            small: 100
         },
 
         switchPage: function(page) {

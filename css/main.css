@@ -1,4 +1,4 @@
-#modalDeleteBin,#modalCreatBin{height:40%}.col-print-preview{min-height:33%}#printPreview{position:relative;width:100%;height:100%;border:1px solid #808080}.input-label-size{position:absolute}.col-print-preview{position:relative;top:-3em}#previewImage,#previewTitle{position:relative;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:50%}#previewTitle{text-align:center;top:-1em;font-size:2em;font-weight:bold;word-wrap:break-word}
+#modalDeleteBin,#modalCreatBin{height:40%}.col-print-preview{min-height:33%}#printPreview{position:relative;width:100%;height:100%;border:1px solid #808080}#labelSize{text-align:center}.col-print-preview{position:relative;top:-3em}#previewImage,#previewTitle{position:relative;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:50%}#previewTitle{text-align:center;top:-1em;font-size:2em;font-weight:bold;word-wrap:break-word}
 
 .center-row{position:relative;top:33%;-webkit-transform:translateY(-33%);-ms-transform:translateY(-33%);transform:translateY(-33%)}
 
