@@ -86,6 +86,7 @@ $(document).ready(function() {
     });
 
     $('#printBin').on('click', function() {
+        $('#modalPrintBinLabel').closeModal();
         var printWindow = window.open('', "Test Window", "height=600,width=800");
         var windowContent = printWindow.document.body;
         windowContent.title = 'Test';
@@ -108,6 +109,5 @@ $(document).ready(function() {
             wordWrap: 'break-word'
         });
         printWindow.print();
-        $('#modalPrintBinLabel').closeModal();
     });
 });
