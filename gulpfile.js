@@ -10,15 +10,25 @@ var jshint = require('gulp-jshint'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     fileinclude = require('gulp-file-include'),
-    concat = require('gulp-concat')
+    concat = require('gulp-concat'),
+    plumber = require('gulp-plumber');
 
 // Compile Sass
 gulp.task('sass', function() {
     return gulp.src('scss/**/*.scss')
+        .pipe(plumber({
+            handleError: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
         .pipe(sass({
             sourcemap: true,
             outputStyle: 'compressed',
-            errLogToConsole: true
+            errLogToConsole: false,
+            onError: function(err) {
+                return notify().write(err);
+            }
         }))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(autoprefixer('last 3 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
