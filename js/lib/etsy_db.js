@@ -112,15 +112,16 @@ $(document).ready(function() {
                 });
             },
 
-            add: function(name, notes) {
+            add: function(name, notes, callback) {
                 $.db.table('bins').where("name").equals(name).count(function(count) {
                     if (count === 0) {
                         $.db.table('bins').add({
                             name: name,
                             notes: notes
-                        }).then(function () {
+                        }).then(function (id) {
                             Materialize.toast("Created bin '" + name + "' successfully", 4000);
                             $.display.updateCounts();
+                            callback([{id: id, name: name, notes: notes}], true);
                         });
                     } else {
                         Materialize.toast("Bin '" + name + "' already exists!", 4000);
@@ -128,9 +129,10 @@ $(document).ready(function() {
                 });
             },
 
-            delete: function(bin_id, bin_name) {
+            delete: function(bin_id, bin_name, callback) {
                 $.db.table('bins').where("id").equals(bin_id).delete().then(function() {
                     Materialize.toast('Bin #' + bin_id + " - '" + bin_name + "' deleted successfully", 4000);
+                    callback(bin_id);
                 });
             }
         }

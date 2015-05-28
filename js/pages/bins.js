@@ -4,7 +4,8 @@ $(document).ready(function() {
             $.display.toggleLoadingScreen($.etsyDB.bins.getAll($.display.page.bins.drawBins));
         },
 
-        drawBins: function(bins) {
+        drawBins: function(bins, append) {
+            append = typeof append !== 'undefined' ? append : false;
             var appendString = '';
             $.each(bins, function(key, val) {
                 var bin = binTemplate;
@@ -21,12 +22,22 @@ $(document).ready(function() {
                     "bin-total": val.total
                 });
 
-                appendString += ('<tr>' + bin.html() + '</tr>');
+                appendString += ('<tr id="bin-row-' + val.id.toString() + '">' + bin.html() + '</tr>');
             });
 
-            // Try and cut some repaint time by using vanilla JS
-            var binsTableBody = document.getElementById('binsTableBody');
-            binsTableBody.innerHTML = appendString;
+            if (append) {
+                $('#binsTableBody').append(appendString);
+            } else {
+                // Try and cut some repaint time by using vanilla JS
+                var binsTableBody = document.getElementById('binsTableBody');
+                binsTableBody.innerHTML = appendString;
+            }
+        },
+
+        removeBin: function(bin_id) {
+            $('#bin-row-' + bin_id).fadeOut('slow', function() {
+                $(this).remove();
+            });
         }
     };
 
@@ -44,7 +55,7 @@ $(document).ready(function() {
         if (bin_name === '') Materialize.toast('Please enter a bin name', 4000);
         else {
             $('#modalCreateBin').closeModal();
-            $.etsyDB.bins.add(bin_name, bin_notes);
+            $.etsyDB.bins.add(bin_name, bin_notes, $.display.page.bins.drawBins);
             $('#bin_name').val('');
             $('#bin_notes').val('');
         }
@@ -71,7 +82,7 @@ $(document).ready(function() {
 
     $('#confirmDeleteBin').on('click', function() {
         $('#modalDeleteBin').closeModal();
-        $.etsyDB.bins.delete(parseInt($('#binDeleteID').html()), $('.binDeleteName').html());
+        $.etsyDB.bins.delete(parseInt($('#binDeleteID').html()), $('.binDeleteName').html(), $.display.page.bins.removeBin);
     });
 
     $('input[type=radio][name=label-size]').on('change', function() {

@@ -2,7 +2,7 @@ $(document).ready(function() {
     $.display = {
         pageSpeed: 300,
         loadingTime: 1500,
-        page: {},
+        page: {}, // Container for all page function objects
 
         labelSizes: {
             large: {
