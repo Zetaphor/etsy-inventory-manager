@@ -19,12 +19,7 @@ $(document).ready(function() {
             bin.find('.bin-notes').html(val.notes);
 
             var bin_actions = bin.find('.bin-actions');
-            bin_actions.find('.btn-remove-bin').attr({
-                "bin-id": val.id.toString(),
-                "bin-name": val.name
-            });
-
-            bin_actions.find('.btn-edit-bin').attr({
+            bin_actions.find('.btn-floating').attr({
                 "bin-id": val.id.toString(),
                 "bin-name": val.name,
                 "bin-total": val.total
@@ -60,6 +55,13 @@ $(document).ready(function() {
         console.log($(this).attr('bin-name'));
     });
 
+    $('body').on('click', '.btn-print-bin', function() {
+        $('#previewTitle').html($(this).attr('bin-name'));
+        $('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), 250));
+
+        $('#modalPrintBinLabel').openModal();
+    });
+
     $('body').on('click', '.btn-remove-bin', function() {
         $('.binDeleteName').html($(this).attr('bin-name'));
         $('#binDeleteID').html($(this).attr('bin-id'));
@@ -70,5 +72,41 @@ $(document).ready(function() {
     $('#confirmDeleteBin').on('click', function() {
         $('#modalDeleteBin').closeModal();
         $.etsyDB.bins.delete(parseInt($('#binDeleteID').html()), $('.binDeleteName').html());
+    });
+
+    $('input[type=radio][name=label-size]').on('change', function() {
+        var id = $(this).attr('id');
+        if (id == 'custom') {
+            console.log('custom');
+            $('.input-label-size').fadeIn('slow');
+        } else {
+            $('.input-label-size').fadeOut('slow');
+            console.log('Standard size');
+        }
+    });
+
+    $('#printBin').on('click', function() {
+        var printWindow = window.open('', "Test Window", "height=600,width=800");
+        var windowContent = printWindow.document.body;
+        windowContent.title = 'Test';
+        $(windowContent).html($('#printPreview').html());
+        $(windowContent).find('#previewImage').css({
+            position: 'relative',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '50%' // Change this to the set width
+        });
+        $(windowContent).find('#previewTitle').css({
+            position: 'relative',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '50%', // Change this to the set width
+            textAlign: 'center',
+            top: '-1em',
+            fontSize: '2em',
+            fontWeight: 'bold',
+            wordWrap: 'break-word'
+        });
+        printWindow.print();
     });
 });

@@ -48,6 +48,10 @@ nav ul a {
     right: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 // Override Materialize overlay
 #lean-overlay {
     z-index: 990 !important;

@@ -4,6 +4,12 @@ $(document).ready(function() {
         loadingTime: 1500,
         page: {},
 
+        labelSizes: {
+            large: 200,
+            medium: 100,
+            small: 50
+        },
+
         switchPage: function(page) {
             $('.page').not(page).css('Index', 0);
             $(page).css('Index', 10);
@@ -57,6 +63,10 @@ $(document).ready(function() {
                     $(this).hide();
                 });
             }, $.display.loadingTime);
+        },
+
+        getQRCode: function(data, size) {
+            return 'https://chart.googleapis.com/chart?chs=' + size + 'x' + size + '&cht=qr&chl=' + data;
         }
     };
 });
