@@ -108,5 +108,6 @@ $(document).ready(function() {
             wordWrap: 'break-word'
         });
         printWindow.print();
+        $('#modalPrintBinLabel').closeModal();
     });
 });
