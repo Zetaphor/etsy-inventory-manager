@@ -75,32 +75,34 @@ $(document).ready(function() {
     });
 
     $('input[type=radio][name=label-size]').on('change', function() {
-        $('#labelSize').val($.display.labelSizes[$(this).attr('id')]);
+        $('#labelImageSize').val($.display.labelSizes[$(this).attr('id')].image);
+        $('#labelFontSize').val($.display.labelSizes[$(this).attr('id')].font);
     });
 
     $('#printBin').on('click', function() {
         $('#modalPrintBinLabel').closeModal();
-        var labelSize = $('#labelSize').val(),
+        var labelImageSize = $('#labelImageSize').val(),
+            labelFontSize = $('#labelFontSize').val(),
             printWindow = window.open('', "Test Window", "height=600,width=800"),
             windowContent = printWindow.document.body;
         windowContent.title = 'Test';
         $(windowContent).html($('#printPreview').html());
-        $(windowContent).find('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), labelSize));
+        $(windowContent).find('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), labelImageSize));
 
         $(windowContent).find('#previewImage').css({
             position: 'relative',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: labelSize + 'px'
+            width: labelImageSize + 'px'
         });
         $(windowContent).find('#previewTitle').css({
             position: 'relative',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: labelSize + 'px',
+            width: labelImageSize + 'px',
             textAlign: 'center',
-            top: '-0.5em',
-            fontSize: '2em',
+            top: '-1em',
+            fontSize: labelFontSize + 'px',
             fontWeight: 'bold',
             wordWrap: 'break-word'
         });

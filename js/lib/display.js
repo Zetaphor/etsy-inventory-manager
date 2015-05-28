@@ -5,9 +5,18 @@ $(document).ready(function() {
         page: {},
 
         labelSizes: {
-            large: 500,
-            medium: 250,
-            small: 100
+            large: {
+                image: 500,
+                font: 60
+            },
+            medium: {
+                image: 250,
+                font: 40
+            },
+            small: {
+                image: 100,
+                font: 11
+            }
         },
 
         switchPage: function(page) {
