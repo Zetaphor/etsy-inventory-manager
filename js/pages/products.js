@@ -46,8 +46,13 @@ $(document).ready(function() {
 
         drawBinList: function(bins) {
             var appendString = '';
+            var currentBin = $('#allProductsBinID').html();
             $.each(bins, function(key, val) {
-                appendString += '<a href="#!" class="collection-item all-product-bin-list-item" all-product-bin-id="' + val.id + '">';
+                if (currentBin == val.id) {
+                    appendString += '<a href="#!" class="collection-item all-product-bin-list-item active" all-product-bin-id="' + val.id + '">';
+                } else {
+                    appendString += '<a href="#!" class="collection-item all-product-bin-list-item" all-product-bin-id="' + val.id + '">';
+                }
                 appendString += val.name + ' (' + val.total + ' Products)</a>';
             });
 
@@ -84,7 +89,17 @@ $(document).ready(function() {
 
     $('body').on('click', '.btn-all-product-change-bin', function() {
         $('#allProductBinList').attr('all-product-id', $(this).attr('all-product-id'));
-        $('#allProductBinTitle').html($(this).attr('all-product-id'));
+        $('#allProductBinTitle').html($(this).attr('all-product-title'));
+
+        var bin_id = $('#all-product-row-' + $(this).attr('all-product-id')).find('.bin-id').html();
+        $('#allProductsBinID').html(bin_id);
+
+        if (bin_id == -1) $('#allProductBinName').html('None');
+        else {
+            var bin_name = $('#all-product-row-' + $(this).attr('all-product-id')).find('.bin-name').html();
+            $('#allProductBinName').html(bin_name);
+        }
+
         $.etsyDB.bins.getAll($.display.page.products.drawBinList);
         $('#modalAllProductBin').openModal();
     });
