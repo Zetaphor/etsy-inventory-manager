@@ -21,6 +21,7 @@ $(document).ready(function() {
                 bin_actions.find('.btn-floating').attr({
                     "bin-id": val.id.toString(),
                     "bin-name": val.name,
+                    "bin-notes": val.notes,
                     "bin-total": val.total
                 });
 
@@ -34,6 +35,14 @@ $(document).ready(function() {
                 var binsTableBody = document.getElementById('binsTableBody');
                 binsTableBody.innerHTML = appendString;
             }
+        },
+
+        updateBin: function(bin) {
+            var bin_row = $('#bin-row-' + bin.id);
+            bin_row.find('.bin-name').html(bin.name);
+            bin_row.find('.bin-notes')
+                .html(bin.notes)
+                .attr('title', bin.notes);
         },
 
         removeBin: function(bin_id) {
@@ -51,27 +60,39 @@ $(document).ready(function() {
     });
 
     $('#createBin').on('click', function() {
-        var bin_name = $('#bin_name').val();
-        var bin_notes = $('#bin_notes').val();
+        var bin_name = $('#binCreateName').val();
+        var bin_notes = $('#binCreateNotes').val();
 
         if (bin_name === '') Materialize.toast('Please enter a bin name', 4000);
         else {
             $('#modalCreateBin').closeModal();
             $.etsyDB.bins.add(bin_name, bin_notes, $.display.page.bins.drawBins);
-            $('#bin_name').val('');
-            $('#bin_notes').val('');
+            $('#binCreateName').val('');
+            $('#binCreateNotes').val('');
         }
     });
 
     $('body').on('click', '.btn-edit-bin', function() {
-        console.log($(this).attr('bin-id'));
-        console.log($(this).attr('bin-name'));
+        $('#binEditID').val($(this).attr('bin-id'));
+        $("label[for='binEditID']").addClass('active');
+
+        $('#binEditName').val($(this).attr('bin-name'));
+        $("label[for='binEditName']").addClass('active');
+
+        $('#binEditNotes').val($(this).attr('bin-notes'));
+        $("label[for='binEditNotes']").addClass('active');
+
+        $('#modalEditBin').openModal();
+    });
+
+    $('#editBin').on('click', function() {
+        $.etsyDB.bins.update(parseInt($('#binEditID').val()), $('#binEditName').val(), $('#binEditNotes').val(), $.display.page.bins.updateBin);
+        $('#modalEditBin').closeModal();
     });
 
     $('body').on('click', '.btn-print-bin', function() {
         $('#previewTitle').html($(this).attr('bin-name'));
         $('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), 250));
-
         $('#modalPrintBinLabel').openModal();
     });
 

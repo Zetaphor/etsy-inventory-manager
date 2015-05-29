@@ -129,10 +129,27 @@ $(document).ready(function() {
                 });
             },
 
-            delete: function(bin_id, bin_name, callback) {
-                $.db.table('bins').where("id").equals(bin_id).delete().then(function() {
-                    Materialize.toast('Bin #' + bin_id + " - '" + bin_name + "' deleted successfully", 4000);
-                    callback(bin_id);
+            update: function(id, name, notes, callback) {
+                $.db.table('bins').where("name").equals(name).count(function(count) {
+                    if (count === 0) {
+                        $.db.table('bins').update(id, {name: name, notes: notes}).then(function (success) {
+                            if (success) {
+                                Materialize.toast("Bin #" + id + " updated successfully", 4000);
+                                callback({id: id, name: name, notes: notes});
+                            } else {
+                                Materialize.toast("An error occured while updating bin #" + id, 4000);
+                            }
+                        });
+                    } else {
+                        Materialize.toast("Error! A bin already exists with the name '" + name + "'", 4000);
+                    }
+                });
+            },
+
+            delete: function(id, name, callback) {
+                $.db.table('bins').where("id").equals(id).delete().then(function() {
+                    Materialize.toast('Bin #' + id + " - '" + name + "' deleted successfully", 4000);
+                    callback(id);
                 });
             }
         }
