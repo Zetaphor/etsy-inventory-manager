@@ -15,7 +15,7 @@ $(document).ready(function() {
         create: function() {
             $.db.version(1).stores(
                 {
-                    products: '++id, bin_id, listing_id, title, categories, price, created, original_created',
+                    products: '++id, bin_id, bin_name, listing_id, title, categories, price, created, original_created',
                     bins: '++id, name, notes'
                 }
             );
@@ -71,6 +71,7 @@ $(document).ready(function() {
                     if (count === 0) {
                         $.db.table('products').add({
                             bin_id: -1,
+                            bin_name: 'None',
                             listing_id: listing.listing_id,
                             title: listing.title,
                             categories: listing.category_path.toString(),
@@ -86,6 +87,19 @@ $(document).ready(function() {
                 });
             },
 
+            setBin: function(product_id, bin_id, callback) {
+                $.db.table('products').update(product_id, {bin_id: bin_id}).then(function(success) {
+                    if (success) {
+                        $.db.table('bins').where("id").equals(bin_id).toArray().then(function(bin) {
+                            $.display.toastSuccess('Updated product bin successfully');
+                            callback(product_id, bin_id, bin[0].name);
+                        });
+                    } else {
+                        $.display.toastSuccess('There was an error updating the product bin!');
+                    }
+                });
+            },
+
             getNew: function(callback) {
                 $.db.table('products').where("bin_id").equals(-1).toArray().then(function(data) {
                     callback(data);
@@ -94,7 +108,22 @@ $(document).ready(function() {
 
             getAll: function(callback) {
                 $.db.table('products').toArray().then(function(data) {
-                    callback(data);
+                    var new_data = data;
+                    $.each(data, function(key) {
+                        if (data[key].bin_id != -1) {
+                            console.log(data[key].bin_id);
+                            $.db.table('bins').where('id').equals(parseInt(data[key].bin_id)).toArray().then(function(bin_data) {
+                                new_data[key]['bin_name'] = bin_data[0].name;
+                                console.log(new_data[key]);
+                            });
+                        }
+
+                        if (key + 1 === data.length) {
+                            // TODO: Get this shit passing the actual fucking name back
+                            //console.log(new_data);
+                            callback(new_data);
+                        }
+                    });
                 });
             }
         },

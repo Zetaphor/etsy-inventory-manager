@@ -82,6 +82,29 @@
     </div>
 </div>
         <div id="pageProducts" class="page">
+    <div id="modalAllProductBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Add Product To Bin</h4>
+            <div class="row">
+                <div class="col s12">
+                    <p>Product: <span id="allProductBinTitle">Product Title</span></p>
+                    <p>Bin Name: <span id="allProductBinName">Current Bin Name</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="collection" id="allProductBinList">
+                        <a href="#!" class="collection-item template" id="allProductBinTemplate">Loading Bin List...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="updateAllProductBin">Update Bin</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col s12">
             <a id="reloadProducts" class="waves-effect waves-light light-blue btn"><i class="mdi-navigation-refresh left"></i>Reload Products</a>
@@ -102,15 +125,16 @@
                 </thead>
 
                 <tbody id="productTableBody">
-                <tr id="productTemplate" class="template">
+                <tr id="allProductTemplate" class="template">
                     <td class="truncate"><a class="listing-url" href="#" title="">Product Title</a></td>
-                    <td class="bin-id">None</td>
+                    <td class="bin-id hidden">-1</td>
+                    <td class="bin-name">Bin Name</td>
                     <td class="price">$5.00</td>
                     <td class="created">Yesterday</td>
                     <td class="original-created">Today</td>
-                    <td>
-                        <a class="btn-floating waves-effect waves-light light-blue" title="Change Bin"><i class="mdi-content-inbox"></i></a>
-                        <a class="btn-floating waves-effect waves-light red" title="Delete Product"><i class="mdi-action-delete"></i></a>
+                    <td class="all-product-actions">
+                        <a class="btn-floating waves-effect waves-light light-blue btn-all-product-change-bin" title="Change Bin"><i class="mdi-content-inbox"></i></a>
+                        <a class="btn-floating waves-effect waves-light green" title="Mark Product As Sold"><i class="mdi-editor-attach-money"></i></a>
                     </td>
                 </tr>
                 </tbody>
