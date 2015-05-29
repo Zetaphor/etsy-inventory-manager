@@ -86,8 +86,11 @@ $(document).ready(function() {
     });
 
     $('#editBin').on('click', function() {
-        $.etsyDB.bins.update(parseInt($('#binEditID').val()), $('#binEditName').val(), $('#binEditNotes').val(), $.display.page.bins.updateBin);
-        $('#modalEditBin').closeModal();
+        if ($('#binEditName').val() === '') $.display.toastError('Bin name cannot be empty!');
+        else {
+            $.etsyDB.bins.update(parseInt($('#binEditID').val()), $('#binEditName').val(), $('#binEditNotes').val(), $.display.page.bins.updateBin);
+            $('#modalEditBin').closeModal();
+        }
     });
 
     $('body').on('click', '.btn-print-bin', function() {
