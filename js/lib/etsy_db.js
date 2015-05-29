@@ -119,12 +119,12 @@ $(document).ready(function() {
                             name: name,
                             notes: notes
                         }).then(function (id) {
-                            Materialize.toast("Created bin '" + name + "' successfully", 4000);
+                            $.display.toastSuccess("Created bin '" + name + "' successfully");
                             $.display.updateCounts();
                             callback([{id: id, name: name, notes: notes}], true);
                         });
                     } else {
-                        Materialize.toast("Bin '" + name + "' already exists!", 4000);
+                        $.display.toastError("Bin '" + name + "' already exists!");
                     }
                 });
             },
@@ -134,21 +134,21 @@ $(document).ready(function() {
                     if (count === 0) {
                         $.db.table('bins').update(id, {name: name, notes: notes}).then(function (success) {
                             if (success) {
-                                Materialize.toast("Bin #" + id + " updated successfully", 4000);
+                                $.display.toastSuccess("Bin #" + id + " updated successfully");
                                 callback({id: id, name: name, notes: notes});
                             } else {
-                                Materialize.toast("An error occured while updating bin #" + id, 4000);
+                                $.display.toastError("An error occured while updating bin #" + id);
                             }
                         });
                     } else {
-                        Materialize.toast("Error! A bin already exists with the name '" + name + "'", 4000);
+                        $.display.toastError("Error! A bin already exists with the name '" + name + "'");
                     }
                 });
             },
 
             delete: function(id, name, callback) {
                 $.db.table('bins').where("id").equals(id).delete().then(function() {
-                    Materialize.toast('Bin #' + id + " - '" + name + "' deleted successfully", 4000);
+                    $.display.toastSuccess('Bin #' + id + " - '" + name + "' deleted successfully");
                     callback(id);
                 });
             }

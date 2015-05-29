@@ -15,7 +15,7 @@ $(document).ready(function() {
             //console.log('Updated recent listings');
             $.display.updateCounts();
             $.display.updateLastUpdateText();
-            Materialize.toast('Successfully updated recent listings', 4000);
+            $.display.toastSuccess('Successfully updated recent listings');
             $('#syncIcon').hide();
         },
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
                 //console.log('Updated all listings');
                 $.display.updateCounts();
                 $.display.updateLastUpdateText();
-                Materialize.toast('Succesfully updated all listings', 4000);
+                $.display.toastSuccess('Succesfully updated all listings');
                 $('#syncIcon').hide();
             }
         }

@@ -76,6 +76,18 @@ $(document).ready(function() {
 
         getQRCode: function(data, size) {
             return 'https://chart.googleapis.com/chart?chs=' + size + 'x' + size + '&cht=qr&chl=' + data;
+        },
+
+        toastSuccess: function(message) {
+            Materialize.toast('<i class="mdi-action-thumb-up small left"></i> ' + message, 4000, 'success');
+        },
+
+        toastInfo: function(message) {
+            Materialize.toast('<i class="mdi-action-info small left"></i> ' + message, 4000, 'info');
+        },
+
+        toastError: function(message) {
+            Materialize.toast('<i class="mdi-alert-warning small left"></i> ' + message, 4000, 'error');
         }
     };
 });

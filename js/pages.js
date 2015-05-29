@@ -20,14 +20,14 @@ $(document).ready(function() {
     });
 
     $('#refreshRecent').on('click', function() {
-        Materialize.toast('Refreshing recent listings...', 4000);
+        $.display.toastInfo('Refreshing recent listings...');
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing Recent Listings');
         $.etsyAPIHelper.getRecentListings();
     });
 
     $('#refreshAll').on('click', function() {
-        Materialize.toast('Refreshing all listings...', 4000);
+        $.display.toastInfo('Refreshing all listings...');
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing All Listings');
         $.etsyAPIHelper.getAllListings();
@@ -37,6 +37,6 @@ $(document).ready(function() {
         $.etsyAPI.storeName = $('#shop_name').val();
         $.etsyApp.saveSettings();
         $('#modalSettings').closeModal();
-        Materialize.toast('Settings saved successfully', 4000);
+        $.display.toastSuccess('Settings saved successfully');
     });
 });

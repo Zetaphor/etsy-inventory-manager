@@ -63,7 +63,7 @@ $(document).ready(function() {
         var bin_name = $('#binCreateName').val();
         var bin_notes = $('#binCreateNotes').val();
 
-        if (bin_name === '') Materialize.toast('Please enter a bin name', 4000);
+        if (bin_name === '') $.display.toastInfo('Please enter a bin name');
         else {
             $('#modalCreateBin').closeModal();
             $.etsyDB.bins.add(bin_name, bin_notes, $.display.page.bins.drawBins);
