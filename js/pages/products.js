@@ -4,41 +4,39 @@ $(document).ready(function() {
             $.display.toggleLoadingScreen($.etsyDB.products.getAll($.display.page.products.drawProducts));
         },
 
-        drawProducts: function(products) {
+        drawProducts: function(all_products) {
             var appendString = '';
 
-            $.each(products, function(key, val) {
+            $.each(all_products, function(key, product_data) {
                 var product = allProductTemplate;
                 product.removeClass('template');
 
                 var product_url = product.find('.listing-url');
-                product_url.attr('href', 'http://www.etsy.com/listing/' + val.listing_id);
-                product_url.attr('title', val.title);
-                product_url.html(val.title);
+                product_url.attr('href', 'http://www.etsy.com/listing/' + product_data.listing_id);
+                product_url.attr('title', product_data.title);
+                product_url.html(product_data.title);
 
-                if (val.bin_id == -1) {
+                if (product_data.bin_id == -1) {
                     product.find('.bin-id').html('-1');
                     product.find('.bin-name').html('<i class="mdi-content-clear"></i>');
                 }
                 else {
-                    //console.log(val);
-                    //console.log(val.bin_name);
-                    //product.find('.bin-id').html(val.bin_id);
-                    //product.find('.bin-name').html(val.bin_name);
+                    product.find('.bin-id').html(product_data.bin_id);
+                    product.find('.bin-name').html(product_data.bin_name);
                 }
 
-                product.find('.price').html(val.price);
-                product.find('.created').html(moment(val.created).format('MMM D, h:mm a'));
-                product.find('.original-created').html(moment(val.original_creation).format('MMM D, h:mm a'));
+                product.find('.price').html(product_data.price);
+                product.find('.created').html(moment(product_data.created).format('MMM D, h:mm a'));
+                product.find('.original-created').html(moment(product_data.original_creation).format('MMM D, h:mm a'));
 
                 var all_product_actions = product.find('.all-product-actions');
                 all_product_actions.find('.btn-floating').attr({
-                    "all-product-id": val.id.toString(),
-                    "all-product-title": val.title,
-                    "all-product-bin-id": val.bin_id
+                    "all-product-id": product_data.id.toString(),
+                    "all-product-title": product_data.title,
+                    "all-product-bin-id": product_data.bin_id
                 });
 
-                appendString += ('<tr id="all-product-row-' + val.id + '">' + product.html() + '</tr>');
+                appendString += ('<tr id="all-product-row-' + product_data.id + '">' + product.html() + '</tr>');
             });
 
             // Try and cut some repaint time by using vanilla JS
@@ -49,15 +47,8 @@ $(document).ready(function() {
         drawBinList: function(bins) {
             var appendString = '';
             $.each(bins, function(key, val) {
-                // var bin = allProductBinTemplate;
-                //bin.removeClass('template');
-                //bin.attr('bin_id', val.id);
-                //bin.html(val.name + ' - ' + val.total + ' products');
-                //console.log(bin.html());
                 appendString += '<a href="#!" class="collection-item all-product-bin-list-item" all-product-bin-id="' + val.id + '">';
                 appendString += val.name + ' (' + val.total + ' Products)</a>';
-
-                //appendString += bin.html();
             });
 
             // Try and cut some repaint time by using vanilla JS
@@ -66,10 +57,12 @@ $(document).ready(function() {
         },
 
         updateProductBin: function(product_id, bin_id, bin_name) {
-            $('#all-product-row-' + product_id).find('.bin_name').html(bin_name);
-            //console.log(product_id);
-            //console.log(bin_id);
-            //console.log(bin_name);
+            var product_row = $('#all-product-row-' + product_id);
+            product_row.find('.bin-name').html(bin_name);
+            product_row.find('.bin-id').html(bin_id);
+            product_row.find('.all-product-actions').find('.btn-floating').attr({
+                "all-product-bin-id": bin_id
+            });
         }
     };
 

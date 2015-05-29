@@ -88,15 +88,18 @@ $(document).ready(function() {
             },
 
             setBin: function(product_id, bin_id, callback) {
-                $.db.table('products').update(product_id, {bin_id: bin_id}).then(function(success) {
-                    if (success) {
-                        $.db.table('bins').where("id").equals(bin_id).toArray().then(function(bin) {
-                            $.display.toastSuccess('Updated product bin successfully');
-                            callback(product_id, bin_id, bin[0].name);
-                        });
-                    } else {
-                        $.display.toastSuccess('There was an error updating the product bin!');
-                    }
+                $.db.table('bins').where('id').equals(bin_id).toArray().then(function(bin) {
+                    var bin_name = bin[0].name;
+                    $.db.table('products').update(product_id, {bin_id: bin_id, bin_name: bin_name}).then(function(success) {
+                        if (success) {
+                            $.db.table('bins').where("id").equals(bin_id).toArray().then(function() {
+                                $.display.toastSuccess('Updated product bin successfully');
+                                callback(product_id, bin_id, bin_name);
+                            });
+                        } else {
+                            $.display.toastSuccess('There was an error updating the product bin!');
+                        }
+                    });
                 });
             },
 
@@ -108,22 +111,7 @@ $(document).ready(function() {
 
             getAll: function(callback) {
                 $.db.table('products').toArray().then(function(data) {
-                    var new_data = data;
-                    $.each(data, function(key) {
-                        if (data[key].bin_id != -1) {
-                            console.log(data[key].bin_id);
-                            $.db.table('bins').where('id').equals(parseInt(data[key].bin_id)).toArray().then(function(bin_data) {
-                                new_data[key]['bin_name'] = bin_data[0].name;
-                                console.log(new_data[key]);
-                            });
-                        }
-
-                        if (key + 1 === data.length) {
-                            // TODO: Get this shit passing the actual fucking name back
-                            //console.log(new_data);
-                            callback(new_data);
-                        }
-                    });
+                    callback(data);
                 });
             }
         },
