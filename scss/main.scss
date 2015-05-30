@@ -21,18 +21,13 @@ nav ul a {
     border-right: 1px solid #bdbdbd;
 }
 
-#settingsButton, #lastUpdatedText, #refreshOverlay, #lastUpdatedText, #syncIcon {
+#settingsButton, #lastUpdatedText, #refreshOverlay, #syncIcon {
     position: absolute;
 }
 
 #settingsButton {
     top: -1em;
     right: 1em;
-}
-
-#lastUpdatedText {
-    top: -1em;
-    left: 4em;
 }
 
 #refreshOverlay {

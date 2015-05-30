@@ -12,6 +12,8 @@
     <ul id="refreshDropdown" class="dropdown-content">
         <li><a id="refreshRecent" href="#!">Recent</a></li>
         <li><a id="refreshAll" href="#!">All</a></li>
+        <!--<li class="divider"></li>-->
+        <!--<li><a id="lastUpdatedText" href="#!">Last Refresh: Never</a></li>-->
     </ul>
 
     <div id="modalSettings" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
@@ -30,12 +32,41 @@
                         </ul>
                     </div>
                     <div id="tabSettingsShop" class="col s12 settings-page">
-                        <row>
-                            <div class="input-field col s6">
-                                <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
-                                <label for="shop_name">Shop Name</label>
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
+                                        <label for="shop_name">Shop Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="switch">
+                                            <label>
+                                                Disabled
+                                                <input type="checkbox">
+                                                <span class="lever"></span>
+                                                Enabled
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </row>
+                            <div class="col s2">
+                                <p>Auto Update Listings</p>
+                                <div class="switch">
+                                    <label>
+                                        Disabled
+                                        <input type="checkbox">
+                                        <span class="lever"></span>
+                                        Enabled
+                                    </label>
+                                </div>
+                                <input placeholder="10" id="autoUpdateInterval" type="text" class="validate">
+                                <label for="autoUpdateInterval">Update Interval (Minutes)</label>
+                            </div>
+                        </div>
                     </div>
                     <div id="tabSettingsDatabase" class="col s12 settings-page">
                         <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Products Table</a>
@@ -76,7 +107,6 @@
             </ul>
 
             <div id="refreshOverlay">
-                <p id="lastUpdatedText">Last Refresh: Never</p>
                 <div class="preloader-wrapper active" id="syncIcon">
                     <div class="spinner-layer spinner-yellow-only">
                         <div class="circle-clipper left">

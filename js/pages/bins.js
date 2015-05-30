@@ -106,7 +106,7 @@ $(document).ready(function() {
         $('#modalDeleteBin').openModal();
     });
 
-    $('#confirmDeleteBin').on('click', function() {
+    $('body').on('click', '#confirmDeleteBin', function() {
         $('#modalDeleteBin').closeModal();
         $.etsyDB.bins.delete(parseInt($('#binDeleteID').html()), $('.binDeleteName').html(), $.display.page.bins.removeBin);
     });
@@ -117,11 +117,11 @@ $(document).ready(function() {
     });
 
     $('#printBin').on('click', function() {
-        $('#modalPrintBinLabel').closeModal();
         var labelImageSize = $('#labelImageSize').val(),
             labelFontSize = $('#labelFontSize').val(),
             printWindow = window.open('', "Test Window", "height=600,width=800"),
             windowContent = printWindow.document.body;
+        $('#modalPrintBinLabel').closeModal();
         windowContent.title = 'Test';
         $(windowContent).html($('#printPreview').html());
         $(windowContent).find('#previewImage').attr('src', $.display.getQRCode('Bin-ID:' + $(this).attr('bin-id'), labelImageSize));
