@@ -1,0 +1,57 @@
+.page {
+  position: absolute;
+  padding-top: 1em;
+  left: 0;
+  width: 100vw;
+  height: 95vh;
+  border-right: 2px solid #000000;
+  overflow-y: scroll; }
+
+.template {
+  display: none; }
+
+#pageContainer {
+  position: relative; }
+
+#settingsControls {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em; }
+
+.settings-page {
+  margin-top: 1em; }
+
+#modalSettings {
+  min-height: 75%; }
+
+#loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 200;
+  display: none; }
+  #loadingOverlay img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 256px;
+    height: 256px;
+    margin-top: -128px;
+    /* Half the height */
+    margin-left: -128px;
+    /* Half the width */ }
+  #loadingOverlay p {
+    position: absolute;
+    top: 10vh;
+    color: white;
+    width: 100vw;
+    text-align: center;
+    font-size: 3em; }
+
+#modalDeleteDatabase {
+  height: 40%; }
+
+/*# sourceMappingURL=pages.css.map */

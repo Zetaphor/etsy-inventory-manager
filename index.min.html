@@ -18,16 +18,32 @@
         <div class="modal-content">
             <h4><i class="mdi-action-settings left"></i> Settings</h4>
             <div class="row">
-                <div class="input-field col s6">
-                    <input placeholder="Enter Etsy Shop Name" id="shop_name" type="text" class="validate">
-                    <label for="shop_name">Shop Name</label>
-                </div>
-                <div class="col s4">
-                    <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text"><i class="mdi-content-save left"></i>Save Settings</a>
-                </div>
-
-                <div class="col s2">
-                    <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Delete Database</a>
+                <div class="row">
+                    <div class="col s12">
+                        <div id="settingsControls">
+                            <a class="waves-effect waves-light btn-flat modal-close">Close<i class="mdi-hardware-keyboard-arrow-down right"></i></a>
+                            <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text">Save Settings<i class="mdi-content-save right"></i></a>
+                        </div>
+                        <ul class="tabs">
+                            <li class="tab col s3"><a class="active" href="#tabSettingsShop">Shop Settings</a></li>
+                            <li class="tab col s3"><a  href="#tabSettingsDatabase">Database Settings</a></li>
+                        </ul>
+                    </div>
+                    <div id="tabSettingsShop" class="col s12 settings-page">
+                        <row>
+                            <div class="input-field col s6">
+                                <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
+                                <label for="shop_name">Shop Name</label>
+                            </div>
+                        </row>
+                    </div>
+                    <div id="tabSettingsDatabase" class="col s12 settings-page">
+                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Products Table</a>
+                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Bins Table</a>
+                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Sold Items Table</a>
+                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Reset Settings</a>
+                        <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Everything</a>
+                    </div>
                 </div>
             </div>
         </div>
