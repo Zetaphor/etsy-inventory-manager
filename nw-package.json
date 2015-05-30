@@ -1,0 +1,22 @@
+{
+    "main": "../index.min.html",
+    "name": "etsy-inventory-manager",
+    "description": "Manage Etsy inventory",
+    "version": "0.1.0",
+    "window": {
+        "title": "Etsy Inventory Manager",
+        "icon": "link.png",
+        "toolbar": false,
+        "frame": true,
+        "width": 1024,
+        "height": 768,
+        "position": "center",
+        "min_width": 1024,
+        "min_height": 768,
+        "max_width": 1920,
+        "max_height": 1080
+    },
+    "webkit": {
+        "plugin": true
+    }
+}
