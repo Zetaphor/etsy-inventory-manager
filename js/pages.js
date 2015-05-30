@@ -39,4 +39,8 @@ $(document).ready(function() {
         $('#modalSettings').closeModal();
         $.display.toastSuccess('Settings saved successfully');
     });
+
+    $('#btnDeleteDatabase').on('click', function() {
+        $('#modalDeleteDatabase').openModal();
+    });
 });

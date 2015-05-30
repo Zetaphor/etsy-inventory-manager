@@ -22,14 +22,34 @@
                     <input placeholder="Enter Etsy Shop Name" id="shop_name" type="text" class="validate">
                     <label for="shop_name">Shop Name</label>
                 </div>
-                <div class="col s4 offset-s2">
+                <div class="col s4">
                     <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text"><i class="mdi-content-save left"></i>Save Settings</a>
+                </div>
+
+                <div class="col s2">
+                    <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Delete Database</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="orange darken-3">
+    <div id="modalDeleteDatabase" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Confirm Database Delete</h4>
+            <p class="flow-text">
+                Are you sure you want to delete the application database?
+                This will reset <strong>ALL</strong> of your product and bins data.
+                This is effectively the same as starting over from scratch.
+                <strong>This action cannot be undone!</strong>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat red white-text" id="confirmDeleteBin">Delete</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <nav class="grey darken-3">
         <div class="nav-wrapper">
             <ul>
                 <li class="active"><a href="#pageDashboard" class="nav-link"><i class="mdi-action-dashboard tiny right"></i> Dashboard</a></li>
