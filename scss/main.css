@@ -32,6 +32,9 @@ nav ul a {
   padding-bottom: 1em;
   margin-bottom: 1em; }
 
+.settings-border-right {
+  border-right: 1px solid lightblue; }
+
 #refreshOverlay {
   top: 0;
   left: 40%;
