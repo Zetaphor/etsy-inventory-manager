@@ -21,30 +21,6 @@ nav ul a {
     border-right: 1px solid #bdbdbd;
 }
 
-#settingsButton, #lastUpdatedText, #refreshOverlay, #syncIcon {
-    position: absolute;
-}
-
-#settingsButton {
-    top: -1em;
-    right: 1em;
-}
-
-#autoUpdateInterval {
-    width: 2em;
-    text-align: center;
-}
-
-.settings-space-row {
-    border-bottom: 1px solid #808080;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-}
-
-.settings-border-right {
-    border-right: 1px solid lightblue;
-}
-
 #refreshOverlay {
     top: 0;
     left: 40%;
