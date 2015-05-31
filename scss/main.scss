@@ -30,6 +30,17 @@ nav ul a {
     right: 1em;
 }
 
+#autoUpdateInterval {
+    width: 2em;
+    text-align: center;
+}
+
+.settings-space-row {
+    border-bottom: 1px solid #808080;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
 #refreshOverlay {
     top: 0;
     left: 40%;
