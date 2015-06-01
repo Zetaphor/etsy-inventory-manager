@@ -36,20 +36,20 @@
                                         <div class="switch">
                                             <label>
                                                 Disabled
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="chkEnableAutoUpdate">
                                                 <span class="lever"></span>
                                                 Enabled
                                             </label>
                                         </div>
                                         <p>
-                                            <input disabled="disabled" value="10" id="autoUpdateInterval" type="text" class="validate">
+                                            <input disabled="disabled" value="10" id="autoUpdateInterval" type="text" class="validate auto-update">
                                             <label for="autoUpdateInterval">Interval (Minutes)</label>
                                         </p>
                                         <p>
-                                            <input class="with-gap" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateRecent"  />
+                                            <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateRecent"  />
                                             <label for="autoUpdateRecent">Recent</label>
 
-                                            <input class="with-gap" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateAll"  />
+                                            <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateAll"  />
                                             <label for="autoUpdateAll">All</label>
                                         </p>
                                     </div>
@@ -60,14 +60,14 @@
 
                                 <div class="row">
                                     <div class="col s4 settings-border-right">
-                                        <input type="checkbox" class="filled-in" id="filled-in-box">
-                                        <label for="filled-in-box">Update Listings At Start</label>
+                                        <input type="checkbox" class="filled-in" id="chkEnableStartUpdate">
+                                        <label for="chkEnableStartUpdate">Update Listings At Start</label>
 
                                         <p>
-                                            <input disabled="disabled" class="with-gap" name="startUpdateType" type="radio" id="startUpdateRecent"  />
+                                            <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateRecent"  />
                                             <label for="startUpdateRecent">Recent</label>
 
-                                            <input disabled="disabled" class="with-gap" name="startUpdateType" type="radio" id="startUpdateAll"  />
+                                            <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateAll"  />
                                             <label for="startUpdateAll">All</label>
                                         </p>
                                     </div>

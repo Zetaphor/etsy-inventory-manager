@@ -4,8 +4,6 @@ $(document).ready(function() {
     $('.tooltipped').tooltip({delay: 50});
     $('.modal-trigger').leanModal();
 
-    $('#shop_name').val($.etsyApp.settings.shopName);
-
     // Hide all pages but the dashboard
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
 
@@ -31,16 +29,5 @@ $(document).ready(function() {
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing All Listings');
         $.etsyAPIHelper.getAllListings();
-    });
-
-    $('#btnSaveSettings').on('click', function() {
-        $.etsyApp.settings.shopName = $('#shop_name').val();
-        $.etsyApp.saveSettings();
-        $('#modalSettings').closeModal();
-        $.display.toastSuccess('Settings saved successfully');
-    });
-
-    $('#btnDeleteDatabase').on('click', function() {
-        $('#modalDeleteDatabase').openModal();
     });
 });
