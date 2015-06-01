@@ -3,7 +3,12 @@ $(document).ready(function() {
         settings: {
             lastRefresh: 'Never',
             firstRun: true,
-            shopName: 'JessicaAnnsEmporium'
+            shopName: 'JessicaAnnsEmporium',
+            updateOnStartEnabled: false,
+            updateOnStartType: 'all',
+            autoUpdateEnabled: false,
+            autoUpdateType: 'recent',
+            autoUpdateInterval: 10
         },
 
         inventoryCounts: {
