@@ -1,11 +1,15 @@
 $(document).ready(function() {
     $.etsyAPIHelper = {
         getRecentListings: function() {
+            $.display.toastInfo('Refreshing recent listings...');
             $.etsyAPI.getListings($.etsyAPIHelper.updateRecentListings, 0, $.etsyAPI.recentResultsLimit);
+            $('#syncIcon').show();
         },
 
         getAllListings: function() {
+            $.display.toastInfo('Refreshing all listings...');
             $.etsyAPI.getListings($.etsyAPIHelper.updateAllListings, 0, $.etsyAPI.resultLimit);
+            $('#syncIcon').show();
         },
 
         updateRecentListings: function(listings) {

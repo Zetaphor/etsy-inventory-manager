@@ -16,6 +16,7 @@ $(document).ready(function() {
         if($(this).is(":checked")) {
             $('.auto-update').prop('disabled', false);
             $.etsyApp.settings.autoUpdateEnabled = true;
+            $.etsyApp.setAutoUpdateTimer();
         } else {
             $('.auto-update').prop('disabled', true);
             $.etsyApp.settings.autoUpdateEnabled = false;
@@ -34,10 +35,12 @@ $(document).ready(function() {
 
     $('#autoUpdateInterval').keyup(function() {
         $.etsyApp.settings.autoUpdateInterval = parseInt($(this).val());
+        $.etsyApp.setAutoUpdateTimer();
     });
 
     $("input[name=autoUpdateType]:radio").change(function () {
         $.etsyApp.settings.autoUpdateType = $(this).val();
+        $.etsyApp.setAutoUpdateTimer();
     });
 
     $("input[name=startUpdateType]:radio").change(function () {

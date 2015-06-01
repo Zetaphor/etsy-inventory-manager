@@ -17,6 +17,18 @@ $(document).ready(function() {
             totalProducts: 0
         },
 
+        setAutoUpdateTimer: function() {
+            if (typeof $.etsyApp.settings.autoUpdateTimer != 'undefined') {
+                ($.etsyApp.settings.autoUpdateTimer);
+            }
+
+            if ($.etsyApp.settings.autoUpdateType == 'recent') {
+                $.etsyApp.autoUpdateTimer = setInterval($.etsyAPIHelper.getRecentListings, ($.etsyApp.settings.autoUpdateInterval * 60000));
+            } else if ($.etsyApp.settings.autoUpdateType == 'all') {
+                $.etsyApp.autoUpdateTimer = setInterval($.etsyAPIHelper.getAllListings, ($.etsyApp.settings.autoUpdateInterval * 60000));
+            }
+        },
+
         loadSettings: function() {
             if (localStorage.getItem('settings') === null) {
                 localStorage.setItem('settings', JSON.stringify($.etsyApp.settings));
@@ -45,16 +57,13 @@ $(document).ready(function() {
             if ($.etsyApp.settings.updateOnStartEnabled) {
                 if ($.etsyApp.settings.updateOnStartType == 'recent') {
                     $('#startUpdateRecent').prop('checked', true);
-                    $.display.toastInfo('Refreshing recent listings...');
                     $.etsyAPIHelper.getRecentListings();
                 } else if ($.etsyApp.settings.updateOnStartType == 'all') {
                     $('#startUpdateAll').prop('checked', true);
-                    $.display.toastInfo('Refreshing all listings...');
                     $.etsyAPIHelper.getAllListings();
                 }
                 $('#chkEnableStartUpdate').prop('checked', true);
                 $('.start-update').prop('disabled', false);
-                $('#syncIcon').show();
             }
 
             $('#autoUpdateInterval').val($.etsyApp.settings.autoUpdateInterval);
