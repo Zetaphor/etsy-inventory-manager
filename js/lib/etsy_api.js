@@ -4,7 +4,6 @@ $(document).ready(function() {
         apiKey: "tpgge44ziiwldztbd8hx7b1r",
         recentResultsLimit: 20,
         resultLimit: 100,
-        storeName: 'JessicaAnnsEmporium',
         listingParams: {
             fields: [
                 'listing_id',
@@ -36,7 +35,7 @@ $(document).ready(function() {
         getListings: function(callback, offset, limit) {
             offset = typeof offset !== 'undefined' ? offset : 0;
             limit = typeof limit !== 'undefined' ? limit : $.etsyAPI.resultLimit;
-            var requestURL = $.etsyAPI.buildURL('shops/' + $.etsyAPI.storeName + '/listings/active.js', offset, limit);
+            var requestURL = $.etsyAPI.buildURL('shops/' + $.etsyApp.settings.shopName + '/listings/active.js', offset, limit);
             $.ajax({
                 url: requestURL,
                 dataType: 'jsonp',

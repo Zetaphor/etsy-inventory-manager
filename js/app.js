@@ -2,7 +2,8 @@ $(document).ready(function() {
     $.etsyApp = {
         settings: {
             lastRefresh: 'Never',
-            firstRun: true
+            firstRun: true,
+            shopName: 'JessicaAnnsEmporium'
         },
 
         inventoryCounts: {
