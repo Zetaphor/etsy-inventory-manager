@@ -42,6 +42,32 @@ $(document).ready(function() {
                 $.etsyApp.appFirstRun();
             }
 
+            if ($.etsyApp.settings.updateOnStartEnabled) {
+                if ($.etsyApp.settings.updateOnStartType == 'recent') {
+                    $('#startUpdateRecent').prop('checked', true);
+                    $.display.toastInfo('Refreshing recent listings...');
+                    $.etsyAPIHelper.getRecentListings();
+                } else if ($.etsyApp.settings.updateOnStartType == 'all') {
+                    $('#startUpdateAll').prop('checked', true);
+                    $.display.toastInfo('Refreshing all listings...');
+                    $.etsyAPIHelper.getAllListings();
+                }
+                $('#chkEnableStartUpdate').prop('checked', true);
+                $('.start-update').prop('disabled', false);
+                $('#syncIcon').show();
+            }
+
+            $('#autoUpdateInterval').val($.etsyApp.settings.autoUpdateInterval);
+            if ($.etsyApp.settings.autoUpdateEnabled) {
+                $('#chkEnableAutoUpdate').prop('checked', true);
+                if ($.etsyApp.settings.autoUpdateType == 'recent') {
+                    $('#autoUpdateRecent').prop('checked', true);
+                } else {
+                    $('#autoUpdateAll').prop('checked', true);
+                }
+                $('.auto-update').prop('disabled', false);
+            }
+
             //$.etsyDB.delete();
             //$.etsyDB.listTables();
 
