@@ -39,11 +39,13 @@ $(document).ready(function() {
         }
     });
 
-    $('#autoUpdateInterval').keyup(function() {
+    $('#autoUpdateInterval').change(function() {
+        $.etsyApp.settings.autoUpdateInterval = $(this).val();
         if ($(this).val() >= $.etsyApp.settings.autoUpdateMinInterval) {
-            $.etsyApp.settings.autoUpdateInterval = parseInt($(this).val());
+            $.etsyApp.settings.autoUpdateInterval = $(this).val();
             if ($.etsyApp.settings.autoUpdateEnabled) $.etsyApp.setAutoUpdateTimer();
         } else {
+            $.display.toastError('Auto-update interval must be at least ' + $.etsyApp.settings.autoUpdateMinInterval +' minutes!');
             $.etsyApp.removeAutoUpdateTimer();
         }
     });

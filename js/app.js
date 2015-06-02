@@ -1,5 +1,17 @@
 $(document).ready(function() {
     $.etsyApp = {
+        defaultSettings: {
+            lastRefresh: 'Never',
+            firstRun: true,
+            shopName: 'JessicaAnnsEmporium',
+            updateOnStartEnabled: false,
+            updateOnStartType: 'all',
+            autoUpdateEnabled: false,
+            autoUpdateType: 'recent',
+            autoUpdateInterval: 10,
+            autoUpdateMinInterval: 10
+        },
+
         settings: {
             lastRefresh: 'Never',
             firstRun: true,
@@ -29,13 +41,13 @@ $(document).ready(function() {
         },
 
         removeAutoUpdateTimer: function() {
-            console.log('Cleared');
             clearInterval($.etsyApp.settings.autoUpdateTimer);
         },
 
         loadSettings: function() {
             if (localStorage.getItem('settings') === null) {
-                localStorage.setItem('settings', JSON.stringify($.etsyApp.settings));
+                $.etsyApp.settings = $.etsyApp.defaultSettings;
+                $.etsyApp.saveSettings();
             } else {
                 $.etsyApp.settings = JSON.parse(localStorage.getItem('settings'));
             }
@@ -55,6 +67,7 @@ $(document).ready(function() {
             $.display.page.dashboard.load();
             if ($.etsyApp.settings.firstRun) {
                 $.etsyApp.settings.firstRun = false;
+                $.etsyApp.saveSettings();
                 $.etsyApp.appFirstRun();
             }
 
@@ -91,9 +104,12 @@ $(document).ready(function() {
         }
     };
 
+    $('#autoUpdateInterval').attr('min', $.etsyApp.settings.autoUpdateMinInterval);
+
     $.etsyApp.loadSettings();
     $.etsyDB.init();
 
+    // TODO: Is this actually broken, or breaking things? It doesn't allow me to reset the settings
     $(window).unload(function() {
         $.etsyApp.saveSettings();
     });
