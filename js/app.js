@@ -18,15 +18,17 @@ $(document).ready(function() {
         },
 
         setAutoUpdateTimer: function() {
-            if (typeof $.etsyApp.settings.autoUpdateTimer != 'undefined') {
-                ($.etsyApp.settings.autoUpdateTimer);
-            }
+            clearInterval($.etsyApp.settings.autoUpdateTimer);
 
             if ($.etsyApp.settings.autoUpdateType == 'recent') {
                 $.etsyApp.autoUpdateTimer = setInterval($.etsyAPIHelper.getRecentListings, ($.etsyApp.settings.autoUpdateInterval * 60000));
             } else if ($.etsyApp.settings.autoUpdateType == 'all') {
                 $.etsyApp.autoUpdateTimer = setInterval($.etsyAPIHelper.getAllListings, ($.etsyApp.settings.autoUpdateInterval * 60000));
             }
+        },
+
+        removeAutoUpdateTimer: function() {
+            clearInterval($.etsyApp.settings.autoUpdateTimer);
         },
 
         loadSettings: function() {

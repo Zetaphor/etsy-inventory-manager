@@ -20,6 +20,7 @@ $(document).ready(function() {
         } else {
             $('.auto-update').prop('disabled', true);
             $.etsyApp.settings.autoUpdateEnabled = false;
+            $.etsyApp.settings.removeAutoUpdateTimer();
         }
     });
 

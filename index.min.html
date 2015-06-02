@@ -8,6 +8,104 @@
 </head>
 
 <body>
+    <div id="modalSettings" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
+    <div class="modal-content">
+        <h4><i class="mdi-action-settings left"></i> Settings</h4>
+        <div class="row">
+            <div class="row">
+                <div class="col s12">
+                    <div id="settingsControls">
+                        <a class="waves-effect waves-light btn-flat modal-close">Close<i class="mdi-hardware-keyboard-arrow-down right"></i></a>
+                        <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text">Save Settings<i class="mdi-content-save right"></i></a>
+                    </div>
+                    <ul class="tabs z-depth-1">
+                        <li class="tab col s3"><a class="active" href="#tabSettingsShop">Shop Settings</a></li>
+                        <li class="tab col s3"><a  href="#tabSettingsDatabase">Database Settings</a></li>
+                    </ul>
+                </div>
+                <div id="tabSettingsShop" class="col s12 settings-page">
+                    <div class="row">
+                        <div class="col s6">
+                            <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
+                            <label for="shop_name">Shop Name</label>
+                            <p class="flow-text">Enter the shop name you would like to pull etsy listings from.</p>
+                        </div>
+
+                        <div class="col s6">
+                            <div class="row settings-space-row">
+                                <div class="col s4 settings-border-right">
+                                    <p>Auto Update Listings</p>
+                                    <div class="switch">
+                                        <label>
+                                            Disabled
+                                            <input type="checkbox" id="chkEnableAutoUpdate">
+                                            <span class="lever"></span>
+                                            Enabled
+                                        </label>
+                                    </div>
+                                    <p>
+                                        <input disabled="disabled" value="10" id="autoUpdateInterval" type="text" class="validate auto-update">
+                                        <label for="autoUpdateInterval">Interval (Minutes)</label>
+                                    </p>
+                                    <p>
+                                        <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateRecent" value="recent" checked />
+                                        <label for="autoUpdateRecent">Recent</label>
+
+                                        <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateAll" value="all" />
+                                        <label for="autoUpdateAll">All</label>
+                                    </p>
+                                </div>
+                                <div class="col s8">
+                                    <p class="flow-text">Explanation of autoupdate interval</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s4 settings-border-right">
+                                    <input type="checkbox" class="filled-in" id="chkEnableStartUpdate">
+                                    <label for="chkEnableStartUpdate">Update Listings At Start</label>
+
+                                    <p>
+                                        <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateRecent" value="recent" />
+                                        <label for="startUpdateRecent">Recent</label>
+
+                                        <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateAll" checked value="all" />
+                                        <label for="startUpdateAll">All</label>
+                                    </p>
+                                </div>
+                                <div class="col s8">
+                                    <p class="flow-text">Explanation of autoupdate on start</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabSettingsDatabase" class="col s12 settings-page">
+                    <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Products Table</a>
+                    <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Bins Table</a>
+                    <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Sold Items Table</a>
+                    <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Reset Settings</a>
+                    <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Everything</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="modalDeleteDatabase" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Confirm Database Delete</h4>
+        <p class="flow-text">
+            Are you sure you want to delete the application database?
+            This will reset <strong>ALL</strong> of your product and bins data.
+            This is effectively the same as starting over from scratch.
+            <strong>This action cannot be undone!</strong>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action waves-effect waves-blue btn-flat red white-text" id="confirmDeleteBin">Delete</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+    </div>
+</div>
     <div class="navbar-fixed">
     <ul id="refreshDropdown" class="dropdown-content">
         <li><a id="refreshRecent" href="#!">Recent</a></li>
@@ -15,106 +113,6 @@
         <!--<li class="divider"></li>-->
         <!--<li><a id="lastUpdatedText" href="#!">Last Refresh: Never</a></li>-->
     </ul>
-
-    <div id="modalSettings" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
-        <div class="modal-content">
-            <h4><i class="mdi-action-settings left"></i> Settings</h4>
-            <div class="row">
-                <div class="row">
-                    <div class="col s12">
-                        <div id="settingsControls">
-                            <a class="waves-effect waves-light btn-flat modal-close">Close<i class="mdi-hardware-keyboard-arrow-down right"></i></a>
-                            <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text">Save Settings<i class="mdi-content-save right"></i></a>
-                        </div>
-                        <ul class="tabs z-depth-1">
-                            <li class="tab col s3"><a class="active" href="#tabSettingsShop">Shop Settings</a></li>
-                            <li class="tab col s3"><a  href="#tabSettingsDatabase">Database Settings</a></li>
-                        </ul>
-                    </div>
-                    <div id="tabSettingsShop" class="col s12 settings-page">
-                        <div class="row">
-                            <div class="col s6">
-                                <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
-                                <label for="shop_name">Shop Name</label>
-                                <p class="flow-text">Enter the shop name you would like to pull etsy listings from.</p>
-                            </div>
-
-                            <div class="col s6">
-                                <div class="row settings-space-row">
-                                    <div class="col s4 settings-border-right">
-                                        <p>Auto Update Listings</p>
-                                        <div class="switch">
-                                            <label>
-                                                Disabled
-                                                <input type="checkbox" id="chkEnableAutoUpdate">
-                                                <span class="lever"></span>
-                                                Enabled
-                                            </label>
-                                        </div>
-                                        <p>
-                                            <input disabled="disabled" value="10" id="autoUpdateInterval" type="text" class="validate auto-update">
-                                            <label for="autoUpdateInterval">Interval (Minutes)</label>
-                                        </p>
-                                        <p>
-                                            <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateRecent" value="recent" checked />
-                                            <label for="autoUpdateRecent">Recent</label>
-
-                                            <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateAll" value="all" />
-                                            <label for="autoUpdateAll">All</label>
-                                        </p>
-                                    </div>
-                                    <div class="col s8">
-                                        <p class="flow-text">Explanation of autoupdate interval</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col s4 settings-border-right">
-                                        <input type="checkbox" class="filled-in" id="chkEnableStartUpdate">
-                                        <label for="chkEnableStartUpdate">Update Listings At Start</label>
-
-                                        <p>
-                                            <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateRecent" value="recent" />
-                                            <label for="startUpdateRecent">Recent</label>
-
-                                            <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateAll" checked value="all" />
-                                            <label for="startUpdateAll">All</label>
-                                        </p>
-                                    </div>
-                                    <div class="col s8">
-                                        <p class="flow-text">Explanation of autoupdate on start</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="tabSettingsDatabase" class="col s12 settings-page">
-                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Products Table</a>
-                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Bins Table</a>
-                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Sold Items Table</a>
-                        <a class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Reset Settings</a>
-                        <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text"><i class="mdi-action-delete left"></i>Clear Everything</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modalDeleteDatabase" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <h4>Confirm Database Delete</h4>
-            <p class="flow-text">
-                Are you sure you want to delete the application database?
-                This will reset <strong>ALL</strong> of your product and bins data.
-                This is effectively the same as starting over from scratch.
-                <strong>This action cannot be undone!</strong>
-            </p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action waves-effect waves-blue btn-flat red white-text" id="confirmDeleteBin">Delete</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
-        </div>
-    </div>
 
     <nav class="grey darken-3">
         <div class="nav-wrapper">
