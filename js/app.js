@@ -8,7 +8,8 @@ $(document).ready(function() {
             updateOnStartType: 'all',
             autoUpdateEnabled: false,
             autoUpdateType: 'recent',
-            autoUpdateInterval: 10
+            autoUpdateInterval: 10,
+            autoUpdateMinInterval: 10
         },
 
         inventoryCounts: {
@@ -28,6 +29,7 @@ $(document).ready(function() {
         },
 
         removeAutoUpdateTimer: function() {
+            console.log('Cleared');
             clearInterval($.etsyApp.settings.autoUpdateTimer);
         },
 

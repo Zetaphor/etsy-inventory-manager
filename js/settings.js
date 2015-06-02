@@ -16,11 +16,16 @@ $(document).ready(function() {
         if($(this).is(":checked")) {
             $('.auto-update').prop('disabled', false);
             $.etsyApp.settings.autoUpdateEnabled = true;
-            $.etsyApp.setAutoUpdateTimer();
+            if ($.etsyApp.settings.autoUpdateInterval >= $.etsyApp.settings.autoUpdateMinInterval) {
+                $.etsyApp.setAutoUpdateTimer();
+            } else {
+                $.display.toastError('Auto-update interval must be at least ' + $.etsyApp.settings.autoUpdateMinInterval +' minutes!');
+                $.etsyApp.removeAutoUpdateTimer();
+            }
         } else {
             $('.auto-update').prop('disabled', true);
             $.etsyApp.settings.autoUpdateEnabled = false;
-            $.etsyApp.settings.removeAutoUpdateTimer();
+            $.etsyApp.removeAutoUpdateTimer();
         }
     });
 
@@ -35,13 +40,17 @@ $(document).ready(function() {
     });
 
     $('#autoUpdateInterval').keyup(function() {
-        $.etsyApp.settings.autoUpdateInterval = parseInt($(this).val());
-        $.etsyApp.setAutoUpdateTimer();
+        if ($(this).val() >= $.etsyApp.settings.autoUpdateMinInterval) {
+            $.etsyApp.settings.autoUpdateInterval = parseInt($(this).val());
+            if ($.etsyApp.settings.autoUpdateEnabled) $.etsyApp.setAutoUpdateTimer();
+        } else {
+            $.etsyApp.removeAutoUpdateTimer();
+        }
     });
 
     $("input[name=autoUpdateType]:radio").change(function () {
         $.etsyApp.settings.autoUpdateType = $(this).val();
-        $.etsyApp.setAutoUpdateTimer();
+        if ($.etsyApp.settings.autoUpdateEnabled) $.etsyApp.setAutoUpdateTimer();
     });
 
     $("input[name=startUpdateType]:radio").change(function () {
