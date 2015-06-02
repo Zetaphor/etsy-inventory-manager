@@ -69,7 +69,7 @@ gulp.task('scripts', function() {
 // Watch files for changes
 gulp.task('watch', function() {
     gulp.watch('**/*.html', ['fileinclude']);
-    gulp.watch('js/**/*.js', ['scripts']);
+    gulp.watch(['js/**/*.js', '!js/min/**/*'], ['scripts']);
     gulp.watch('scss/**/*.scss', ['sass']);
 });
 
