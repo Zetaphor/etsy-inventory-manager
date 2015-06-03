@@ -18,14 +18,12 @@ $(document).ready(function() {
     });
 
     $('#refreshRecent').on('click', function() {
-        $.display.toastInfo('Refreshing recent listings...');
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing Recent Listings');
         $.etsyAPIHelper.getRecentListings();
     });
 
     $('#refreshAll').on('click', function() {
-        $.display.toastInfo('Refreshing all listings...');
         $('#syncIcon').show();
         $('#lastUpdatedText').html('Refreshing All Listings');
         $.etsyAPIHelper.getAllListings();
