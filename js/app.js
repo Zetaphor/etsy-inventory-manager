@@ -98,6 +98,7 @@ $(document).ready(function() {
             //$.etsyDB.listTables();
 
             // https://github.com/rndme/download // Use this for downloading the export
+            // https://stackoverflow.com/a/26298948/866332 // Use this to open it
             //$.etsyDB.export().then(function (dbObj) {
             //    var json = JSON.stringify(dbObj);
             //    alert (json);
