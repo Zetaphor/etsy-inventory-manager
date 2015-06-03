@@ -3,6 +3,7 @@ $(document).ready(function() {
     $(".dropdown-button").dropdown();
     $('.tooltipped').tooltip({delay: 50});
     $('.modal-trigger').leanModal();
+    $('.scrollspy').scrollSpy();
 
     // Hide all pages but the dashboard
     $('.page').not('#pageDashboard').hide().css({left: '-200vw'});
