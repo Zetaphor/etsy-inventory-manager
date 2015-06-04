@@ -52,6 +52,24 @@ gulp.task('images', function () {
         .pipe(gulp.dest('../dist/img'));
 });
 
+gulp.task('materialize', function () {
+
+});
+
+gulp.task('modules', function () {
+    gulp.src('node_modules/materialize-css/**/*')
+        .pipe(gulp.dest('../dist/vendor/materialize-css'));
+
+    gulp.src('node_modules/dexie/**/*')
+        .pipe(gulp.dest('../dist/vendor/dexie'));
+
+    gulp.src('node_modules/moment/**/*')
+        .pipe(gulp.dest('../dist/vendor/moment'));
+
+    gulp.src('node_modules/jquery/dist/**/*')
+        .pipe(gulp.dest('../dist/vendor/jquery'));
+});
+
 // Compile JS
 gulp.task('scripts', function() {
     return gulp.src(['js/**/*.js', '!js/min/**/*'])
@@ -80,4 +98,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'scripts', 'fileinclude', 'images', 'watch']);
+gulp.task('default', ['sass', 'scripts', 'fileinclude', 'modules', 'images', 'watch']);
