@@ -68,6 +68,11 @@ gulp.task('modules', function () {
 
     gulp.src('node_modules/jquery/dist/**/*')
         .pipe(gulp.dest('../dist/vendor/jquery'));
+
+    gulp.src('vendor/**/*.js')
+        .pipe(uglify())
+        .pipe(rename({extname: '.min.js'}))
+        .pipe(gulp.dest('../dist/vendor'));
 });
 
 // Compile JS
