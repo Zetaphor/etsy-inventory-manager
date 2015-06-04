@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/bin/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Etsy Inventory Manager</title>
+</head>
+
+<body>
+    <div id="modalSettings" class="modal bottom-sheet" style="display: block; opacity: 0; bottom: -100%;">
+    <div class="modal-content">
+        <h4><i class="mdi-action-settings left"></i> Settings</h4>
+        <div class="row">
+            <div class="row">
+                <div class="col s12">
+                    <div id="settingsControls">
+                        <a class="waves-effect waves-light btn-flat modal-close">Close<i class="mdi-hardware-keyboard-arrow-down right"></i></a>
+                        <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text">Save Settings<i class="mdi-content-save right"></i></a>
+                    </div>
+                    <ul class="tabs z-depth-1">
+                        <li class="tab col s3"><a class="active" href="#tabSettingsShop">Shop Settings</a></li>
+                        <li class="tab col s3"><a  href="#tabSettingsDatabase">Database Settings</a></li>
+                    </ul>
+                </div>
+                <div id="tabSettingsShop" class="col s12 settings-page">
+                    <div class="row">
+                        <div class="col s6">
+                            <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
+                            <label for="shop_name">Shop Name</label>
+                            <p class="flow-text">Enter your Etsy shop name. This is the shop that all listings will be pulled from using the Etsy Listings API.</p>
+                        </div>
+
+                        <div class="col s6">
+                            <div class="row settings-space-row">
+                                <div class="col s4 settings-border-right">
+                                    <p>Auto Update Listings</p>
+                                    <div class="switch">
+                                        <label>
+                                            Disabled
+                                            <input type="checkbox" id="chkEnableAutoUpdate">
+                                            <span class="lever"></span>
+                                            Enabled
+                                        </label>
+                                    </div>
+                                    <p>
+                                        <input disabled="disabled" value="10" id="autoUpdateInterval" type="number" class="validate auto-update" min="1" max="99">
+                                        <label for="autoUpdateInterval">Interval (Minutes)</label>
+                                    </p>
+                                    <p>
+                                        <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateRecent" value="recent" checked />
+                                        <label for="autoUpdateRecent">Recent</label>
+
+                                        <input class="with-gap auto-update" disabled="disabled" name="autoUpdateType" type="radio" id="autoUpdateAll" value="all" />
+                                        <label for="autoUpdateAll">All</label>
+                                    </p>
+                                </div>
+                                <div class="col s8">
+                                    <p class="flow-text">When enabled, the selected listings type will be automatically updated every X minutes, where X is an interval you specify.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s4 settings-border-right">
+                                    <input type="checkbox" class="filled-in" id="chkEnableStartUpdate">
+                                    <label for="chkEnableStartUpdate">Update Listings At Start</label>
+
+                                    <p>
+                                        <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateRecent" value="recent" />
+                                        <label for="startUpdateRecent">Recent</label>
+
+                                        <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateAll" checked value="all" />
+                                        <label for="startUpdateAll">All</label>
+                                    </p>
+                                </div>
+                                <div class="col s8">
+                                    <p class="flow-text">When enabled, the selected listings type will be automatically updated at every start of the application</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabSettingsDatabase" class="col s12 settings-page">
+                    <div class="row">
+                        <div class="col s6 settings-border-right center-align">
+                            <a class="waves-effect waves-light btn red white-text btn-db"><i class="mdi-action-delete left"></i>Remove All Products</a>
+                        </div>
+                        <div class="col s6">
+                            <p>Removes all products from the applications inventory</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s6 settings-border-right center-align">
+                            <a class="waves-effect waves-light btn red white-text btn-db"><i class="mdi-action-delete left"></i>Remove All Bins</a>
+                        </div>
+                        <div class="col s6">
+                            <p>Removes all bins from the applications inventory</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s6 settings-border-right center-align">
+                            <a class="waves-effect waves-light btn red white-text btn-db"><i class="mdi-action-delete left"></i>Reset Settings</a>
+                        </div>
+                        <div class="col s6">
+                            <p>Resets all application settings to their defaults</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s6 settings-border-right center-align">
+                            <a id="btnDeleteDatabase" class="waves-effect waves-light btn red white-text btn-db"><i class="mdi-action-delete left"></i>Reset Everything</a>
+                        </div>
+                        <div class="col s6">
+                            <p>Removes <strong>all</strong> application data, resetting everything</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="modalDeleteDatabase" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Confirm Database Delete</h4>
+        <p class="flow-text">
+            Are you sure you want to delete the application database?
+            This will reset <strong>ALL</strong> of your product and bins data.
+            This is effectively the same as starting over from scratch.
+            <strong>This action cannot be undone!</strong>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action waves-effect waves-blue btn-flat red white-text" id="confirmDeleteBin">Delete</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+    </div>
+</div>
+    <div class="navbar-fixed">
+    <ul id="refreshDropdown" class="dropdown-content">
+        <li><a id="refreshRecent" href="#!">Recent</a></li>
+        <li><a id="refreshAll" href="#!">All</a></li>
+        <!--<li class="divider"></li>-->
+        <!--<li><a id="lastUpdatedText" href="#!">Last Refresh: Never</a></li>-->
+    </ul>
+
+    <nav class="grey darken-3">
+        <div class="nav-wrapper">
+            <ul>
+                <li class="active"><a href="#pageDashboard" class="nav-link"><i class="mdi-action-dashboard tiny right"></i> Dashboard</a></li>
+                <li><a href="#pageNewProducts" class="nav-link"><i class="mdi-av-new-releases right"></i> New Products</a></li>
+                <li><a href="#pageBins" class="nav-link"><i class="mdi-content-inbox right"></i> Bins</a></li>
+                <li><a href="#pageProducts" class="nav-link"><i class="mdi-action-info right"></i> All Products</a></li>
+                <li class="nav-refresh"><a class="dropdown-button" href="#!" data-activates="refreshDropdown"> Refresh Listings<i class="mdi-notification-sync left"></i></a></li>
+                <li><a href="#pageHelp" class="nav-link"><i class="mdi-action-help right"></i> Help</a></li>
+            </ul>
+
+            <div id="refreshOverlay">
+                <div class="preloader-wrapper active" id="syncIcon">
+                    <div class="spinner-layer spinner-yellow-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <p id="settingsButton"><a href="#modalSettings" class="modal-trigger"><i class="mdi-action-settings right"></i> Settings</a></p>
+        </div>
+    </nav>
+</div>
+    <div id="loadingOverlay">
+    <img src="img/loading.gif">
+    <p>Loading... </p>
+</div>
+
+    <div id="pageContainer">
+        <div id="pageDashboard" class="page">
+    <div class="row center-row">
+        <div class="col s4">
+            <h4 class="center"><i class="mdi-av-new-releases large center-align"></i></h4>
+            <h4 class="center"><span class="num-total-new">0</span> New Products</h4>
+        </div>
+
+        <div class="col s4">
+            <h4 class="center"><i class="mdi-content-inbox large center-align"></i></h4>
+            <h4 class="center"><span class="num-total-bins">0</span> Total Bins</h4>
+        </div>
+
+        <div class="col s4">
+            <h4 class="center"><i class="mdi-action-info large center-align"></i></h4>
+            <h4 class="center"><span class="num-total-products">0</span> Total Products</h4>
+        </div>
+    </div>
+</div>
+        <div id="pageProducts" class="page">
+    <div id="modalAllProductBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Add Product To Bin</h4>
+            <div class="row">
+                <div class="col s12">
+                    <span class="hidden" id="allProductsBinID">-1</span>
+                    <p>Product: <span id="allProductBinTitle">Product Title</span></p>
+                    <p>Bin Name: <span id="allProductBinName">Current Bin Name</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="collection" id="allProductBinList">
+                        <a href="#!" class="collection-item template" id="allProductBinTemplate">Loading Bin List...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="updateAllProductBin">Update Bin</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <a id="reloadProducts" class="waves-effect waves-light light-blue btn"><i class="mdi-navigation-refresh left"></i>Reload Products</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <p class="center-align">All Products</p>
+            <table id="productsTable" class="striped bordered sortable">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Bin Name</th>
+                    <th>Price</th>
+                    <th>Original Publish Date</th>
+                    <th>Original Creation Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody id="productTableBody">
+                <tr id="allProductTemplate" class="template">
+                    <td class="truncate"><a class="listing-url" href="#" title="">Product Title</a></td>
+                    <td class="bin-id hidden">-1</td>
+                    <td class="bin-name">Bin Name</td>
+                    <td class="price">$5.00</td>
+                    <td class="created">Yesterday</td>
+                    <td class="original-created">Today</td>
+                    <td class="all-product-actions">
+                        <a class="btn-floating waves-effect waves-light light-blue btn-all-product-change-bin" title="Change Bin"><i class="mdi-content-inbox"></i></a>
+                        <a class="btn-floating waves-effect waves-light green" title="Mark Product As Sold"><i class="mdi-editor-attach-money"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        <div id="pageNewProducts" class="page">
+    <div id="modalNewProductBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Add Product To Bin</h4>
+            <div class="row">
+                <div class="col s12">
+                    <span class="hidden" id="newProductsBinID">-1</span>
+                    <p>Product: <span id="newProductBinTitle">Product Title</span></p>
+                    <p>Bin Name: <span id="newProductBinName">Current Bin Name</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="collection" id="newProductBinList">
+                        <a href="#!" class="collection-item template" id="newProductBinTemplate">Loading Bin List...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="updateNewProductBin">Update Bin</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <a id="reloadNewProducts" class="waves-effect waves-light light-blue btn"><i class="mdi-navigation-refresh left"></i>Reload New Products</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <p class="center-align">New Products</p>
+            <table id="newProductsTable" class="striped bordered sortable">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Bin Name</th>
+                    <th>Price</th>
+                    <th>Original Publish Date</th>
+                    <th>Original Creation Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody id="newProductTableBody">
+                <tr id="newProductTemplate" class="template">
+                    <td class="truncate"><a class="listing-url" href="#" title="">Product Title</a></td>
+                    <td class="bin-id hidden">-1</td>
+                    <td class="bin-name">Bin Name</td>
+                    <td class="price">$5.00</td>
+                    <td class="created">Yesterday</td>
+                    <td class="original-created">Today</td>
+                    <td class="new-product-actions">
+                        <a class="btn-floating waves-effect waves-light light-blue btn-new-product-change-bin" title="Change Bin"><i class="mdi-content-inbox"></i></a>
+                        <a class="btn-floating waves-effect waves-light green" title="Mark Product As Sold"><i class="mdi-editor-attach-money"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        <div id="pageBins" class="page">
+    <div id="modalCreateBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Create New Bin</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="binCreateName" type="text" class="validate" required="required">
+                    <label for="binCreateName">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="binCreateNotes" class="materialize-textarea"></textarea>
+                    <label for="binCreateNotes">Notes</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="createBin">Create</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <div id="modalEditBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Edit Bin</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input disabled="" id="binEditID" type="text" class="validate">
+                    <label for="binEditID" class="active">Bin ID</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="binEditName" type="text" class="validate" required="required">
+                    <label for="binEditName">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea id="binEditNotes" class="materialize-textarea"></textarea>
+                    <label for="binEditNotes">Notes</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat light-blue white-text" id="editBin">Update</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <div id="modalDeleteBin" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Confirm Bin Delete - #<span id="binDeleteID"></span> <span class="binDeleteName"></span></h4>
+            <p class="flow-text">Are you sure you want to delete <span class="binDeleteName"></span>? The <span class="binDeleteTotal">0</span> item(s) in this bin will be moved to the new item queue.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat red white-text" id="confirmDeleteBin">Delete</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
+        </div>
+    </div>
+
+    <div id="modalPrintBinLabel" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Print Bin Label</h4>
+            <div class="row">
+                <div class="col s6">
+                    <p>Label Size</p>
+                    <div class="row">
+                        <div class="col s3">
+                            <input class="with-gap light-blue" name="label-size" type="radio" id="large" />
+                            <label for="large">Large</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s3">
+                            <input class="with-gap" name="label-size" type="radio" id="medium" />
+                            <label for="medium">Medium</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s3">
+                            <input class="with-gap" name="label-size" type="radio" id="small" />
+                            <label for="small">Small</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s3">
+                            <input id="labelImageSize" type="text" class="validate" value="0">
+                            <label for="labelImageSize">Image Size (px)</label>
+                        </div>
+
+                        <div class="col s3">
+                            <input id="labelFontSize" type="text" class="validate" value="0">
+                            <label for="labelFontSize">Font Size (px)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s6 col-print-preview">
+                    <p class="center-align example-text">Example - Not To Scale</p>
+                    <div id="printPreview" class="z-depth-2">
+                        <div id="previewWrapper">
+                            <img id="previewImage" src="" />
+                            <div id="previewTitle">Bin Title</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="printBin">Print</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Close</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <a id="reloadBins" class="waves-effect waves-light light-blue btn"><i class="mdi-navigation-refresh left"></i>Reload Bins</a>
+            <a href="#modalCreateBin" class="waves-effect waves-light btn light-blue modal-trigger"><i class="mdi-av-my-library-add left"></i>Create Bin</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10 offset-s1">
+            <p class="center-align">Bins</p>
+            <table id="binsTable" class="striped bordered sortable">
+                <thead>
+                <tr>
+                    <th>Bin #</th>
+                    <th>Name</th>
+                    <th>Total Items</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody id="binsTableBody">
+                <tr id="binTemplate" class="template">
+                    <td class="bin-id">-1</td>
+                    <td class="bin-name">Test Bin</td>
+                    <td class="bin-total">5</td>
+                    <td class="bin-notes truncate">Here are some notes</td>
+                    <td class="bin-actions">
+                        <a class="btn-floating waves-effect waves-light blue-grey btn-view-bin" title="View Bin Contents"><i class="mdi-action-visibility"></i></a>
+                        <a class="btn-floating waves-effect waves-light light-blue btn-edit-bin" title="Edit Bin"><i class="mdi-editor-mode-edit"></i></a>
+                        <a class="btn-floating waves-effect waves-light green btn-print-bin" title="Print Bin Label"><i class="mdi-action-print"></i></a>
+                        <a class="btn-floating waves-effect waves-light red btn-remove-bin" title="Delete Bin"><i class="mdi-action-delete"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        <div id="pageHelp" class="page">
+    <div class="row">
+        <div class="col s12 m9 l10">
+            <div id="introduction" class="section scrollspy">
+                <p>Content </p>
+            </div>
+
+            <div id="structure" class="section scrollspy">
+                <p>Content </p>
+            </div>
+
+            <div id="initialization" class="section scrollspy">
+                <p>Content </p>
+            </div>
+        </div>
+        <div class="col hide-on-small-only m3 l2">
+            <ul class="section table-of-contents">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#structure">Structure</a></li>
+                <li><a href="#initialization">Intialization</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <script type="text/javascript" src="node_modules/dexie/dist/latest/Dexie.js"></script>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/materialize-css/bin/materialize.js"></script>
+<script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="js/sorttable.min.js"></script>
+<script type="text/javascript" src="js/lib/etsy_api.min.js"></script>
+<script type="text/javascript" src="js/lib/etsy_db.min.js"></script>
+<script type="text/javascript" src="js/lib/etsy_api_helper.min.js"></script>
+<script type="text/javascript" src="js/lib/display.min.js"></script>
+<script type="text/javascript" src="js/pages/bins.min.js"></script>
+<script type="text/javascript" src="js/pages/products.min.js"></script>
+<script type="text/javascript" src="js/pages/new_products.min.js"></script>
+<script type="text/javascript" src="js/pages/help.min.js"></script>
+<script type="text/javascript" src="js/pages/dashboard.min.js"></script>
+<script type="text/javascript" src="js/app.min.js"></script>
+<script type="text/javascript" src="js/settings.min.js"></script>
+<script type="text/javascript" src="js/pages.min.js"></script>
+</body>
+</html>

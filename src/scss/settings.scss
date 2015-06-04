@@ -1,0 +1,41 @@
+#settingsButton, #lastUpdatedText, #refreshOverlay, #syncIcon {
+    position: absolute;
+}
+
+#settingsButton {
+    top: -1em;
+    right: 1em;
+}
+
+#autoUpdateInterval {
+    width: 3em;
+    text-align: center;
+}
+
+.settings-space-row {
+    border-bottom: 1px solid #808080;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+.settings-border-right {
+    border-right: 1px solid lightblue;
+}
+
+#settingsControls {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+.settings-page {
+    margin-top: 2em;
+}
+
+#modalSettings {
+    min-height: 75%;
+}
+
+.btn-db {
+    margin-top: 1em;
+}

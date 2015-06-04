@@ -1,0 +1,15 @@
+#binsTable{table-layout:fixed}#modalDeleteBin{height:40%}.col-print-preview{min-height:33%}#printPreview{position:relative;width:100%;height:100%;border:1px solid #808080}#labelImageSize,#labelFontSize{text-align:center}.col-print-preview{position:relative;top:-3em}#previewImage,#previewTitle{position:relative;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:50%}#previewTitle{text-align:center;top:-1em;font-size:2em;font-weight:bold;word-wrap:break-word}.example-text{font-weight:bold}
+
+.center-row{position:relative;top:33%;-webkit-transform:translateY(-33%);-ms-transform:translateY(-33%);transform:translateY(-33%)}
+
+html{margin:0px;padding:0px;overflow:hidden}body{margin:0px;padding:0px}.nav-refresh{list-style:none}.navbar-fixed{position:relative}nav ul a{border-right:1px solid #bdbdbd}#refreshOverlay{top:0;left:40%;min-width:16%}#syncIcon{top:0.5em;display:none;right:0}.hidden{display:none}#lean-overlay{z-index:990 !important}.toast.error{background-color:#ef5350}.toast.success{background-color:#66bb6a}.toast.info{background-color:#29b6f6}
+
+#newProductsTable{table-layout:fixed}
+
+.page{position:absolute;padding-top:1em;left:0;width:100vw;height:95vh;border-right:2px solid #000000;overflow-y:scroll}.template{display:none}#pageContainer{position:relative}#loadingOverlay{position:absolute;top:0;left:0;width:100vw;height:100vh;background-color:#000000;z-index:200;display:none}#loadingOverlay img{position:absolute;top:50%;left:50%;width:256px;height:256px;margin-top:-128px;margin-left:-128px}#loadingOverlay p{position:absolute;top:10vh;color:white;width:100vw;text-align:center;font-size:3em}#modalDeleteDatabase{height:40%}
+
+#productsTable{table-layout:fixed}
+
+#settingsButton,#lastUpdatedText,#refreshOverlay,#syncIcon{position:absolute}#settingsButton{top:-1em;right:1em}#autoUpdateInterval{width:3em;text-align:center}.settings-space-row{border-bottom:1px solid #808080;padding-bottom:1em;margin-bottom:1em}.settings-border-right{border-right:1px solid lightblue}#settingsControls{position:absolute;top:0.5em;right:0.5em}.settings-page{margin-top:2em}#modalSettings{min-height:75%}.btn-db{margin-top:1em}
+
+/*# sourceMappingURL=main.css.map */
