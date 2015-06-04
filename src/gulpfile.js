@@ -11,7 +11,8 @@ var jshint = require('gulp-jshint'),
     autoprefixer = require('gulp-autoprefixer'),
     fileinclude = require('gulp-file-include'),
     concat = require('gulp-concat'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
+    NwBuilder = require('node-webkit-builder');
 
 // Compile Sass
 gulp.task('sass', function() {
@@ -101,6 +102,28 @@ gulp.task('watch', function() {
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('img/**/*', ['images']);
 });
+
+gulp.task('build', function() {
+    var nw = new NwBuilder({
+        files: '../', // use the glob format
+        platforms: ['osx', 'win', 'linux'],
+        buildDir: '../build',
+        version: '0.12.2',
+        buildType: 'timestamped'
+    });
+
+//Log stuff you want
+
+    nw.on('log',  console.log);
+
+// Build returns a promise
+    nw.build().then(function () {
+        console.log('all done!');
+    }).catch(function (error) {
+        console.error(error);
+    });
+});
+
 
 // Default Task
 gulp.task('default', ['sass', 'scripts', 'fileinclude', 'modules', 'images', 'watch']);

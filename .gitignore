@@ -2,3 +2,5 @@
 node_modules/
 npm-debug.log
 nwk-socket.io-master/
+src/cache
+build/
