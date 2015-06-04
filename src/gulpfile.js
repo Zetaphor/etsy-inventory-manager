@@ -72,7 +72,7 @@ gulp.task('modules', function () {
 
 // Compile JS
 gulp.task('scripts', function() {
-    return gulp.src(['js/**/*.js', '!js/min/**/*'])
+    return gulp.src(['js/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'))
@@ -92,7 +92,7 @@ gulp.task('scripts', function() {
 // Watch files for changes
 gulp.task('watch', function() {
     gulp.watch('**/*.html', ['fileinclude']);
-    gulp.watch(['js/**/*.js', '!js/min/**/*'], ['scripts']);
+    gulp.watch(['js/**/*.js'], ['scripts']);
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('img/**/*', ['images']);
 });
