@@ -1,4 +1,28 @@
 $(document).ready(function() {
+    var import_data = '';
+
+    function openFile(file) {
+        var extension = file.name.match(/\.[0-9a-z]+$/i);
+
+        if (extension[0] !== '.json') {
+            $.display.toastError("Import file must be a '.json' file extension!");
+            import_data = '';
+            $('#importPath').val('');
+            if (!$('btnImport').hasClass('disabled')) $('#btnImport').addClass('disabled');
+            return;
+        }
+
+        $('#btnImport').removeClass('disabled');
+
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+            import_data = event.target.result;
+        };
+
+        reader.readAsText(file);
+    }
+
     $('#shop_name').val($.etsyApp.settings.shopName);
 
     $('#btnSaveSettings').on('click', function() {
@@ -64,5 +88,13 @@ $(document).ready(function() {
             var json = JSON.stringify(dbObj);
             download(json, "Etsy_Inventory_Data.json", "application/json");
         });
+    });
+
+    $('#btnImport').on('click', function() {
+        console.log(import_data);
+    });
+
+    $("#importFile").change(function() {
+        openFile(this.files[0]);
     });
 });

@@ -93,13 +93,13 @@
         <div class="col s6 settings-border-right center-align">
             <p class="flow-text">Import Data</p>
             <div class="file-field input-field">
-                <input class="file-path validate" type="text"/>
+                <input id="importPath" class="file-path validate" type="text"/>
                 <div class="btn light-blue">
                     <span>File</span>
-                    <input type="file" />
+                    <input id="importFile" type="file" />
                 </div>
             </div>
-            <a class="waves-effect waves-light btn orange btn-top-margin"><i class="mdi-file-file-upload left"></i>Import</a>
+            <a id="btnImport" class="waves-effect waves-light btn light-blue btn-top-margin disabled"><i class="mdi-file-file-upload left"></i>Import</a>
         </div>
         <div class="col s6">
             <p class="flow-text">
