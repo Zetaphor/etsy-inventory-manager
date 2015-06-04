@@ -37,8 +37,15 @@
 
             <div class="row">
                 <div class="col s4 settings-border-right">
-                    <input type="checkbox" class="filled-in" id="chkEnableStartUpdate">
-                    <label for="chkEnableStartUpdate">Update Listings At Start</label>
+                    <p>Update Listings At Start</p>
+                    <div class="switch">
+                        <label>
+                            Disabled
+                            <input type="checkbox" id="chkEnableStartUpdate">
+                            <span class="lever"></span>
+                            Enabled
+                        </label>
+                    </div>
 
                     <p>
                         <input disabled="disabled" class="with-gap start-update" name="startUpdateType" type="radio" id="startUpdateRecent" value="recent" />
