@@ -19,8 +19,9 @@
                         <a id="btnSaveSettings" class="waves-effect waves-light btn light-blue white-text">Save Settings<i class="mdi-content-save right"></i></a>
                     </div>
                     <ul class="tabs z-depth-1">
-                        <li class="tab col s3"><a class="active" href="#tabSettingsShop">Shop Settings</a></li>
-                        <li class="tab col s3"><a  href="#tabSettingsDatabase">Database Settings</a></li>
+                        <li class="tab col s3"><a class="active" href="#tabSettingsShop"><i class="mdi-maps-store-mall-directory"></i>Etsy Shop</a></li>
+                        <li class="tab col s3"><a  href="#tabImportExport"><i class="mdi-communication-import-export"></i>Import/Export Data</a></li>
+                        <li class="tab col s3"><a  href="#tabSettingsDatabase"><i class="mdi-action-delete"></i>Remove Data</a></li>
                     </ul>
                 </div>
                 <div id="tabSettingsShop" class="col s12 settings-page">
@@ -114,6 +115,32 @@
                         </div>
                         <div class="col s6">
                             <p>Removes <strong>all</strong> application data, resetting everything</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabImportExport" class="col s12 settings-page">
+                    <div class="row">
+                        <div class="col s6 settings-border-right">
+                            <div class="file-field input-field">
+                                <input class="file-path validate" type="text"/>
+                                <div class="btn">
+                                    <span>File</span>
+                                    <input type="file" />
+                                </div>
+                            </div>
+                            <a class="waves-effect waves-light btn light-blue"><i class="mdi-file-file-upload left"></i>Import</a>
+                        </div>
+                        <div class="col s6">
+                            Explanation
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s6 settings-border-right">
+                            <a id="btnExportData" class="waves-effect waves-light btn light-blue"><i class="mdi-file-file-download left"></i>Export</a>
+                        </div>
+                        <div class="col s6">
+                            Explanation
                         </div>
                     </div>
                 </div>
@@ -507,8 +534,9 @@
     <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="vendor/dexie/dist/latest/Dexie.js"></script>
 <script type="text/javascript" src="vendor/materialize-css/bin/materialize.js"></script>
-    <script type="text/javascript" src="js/sorttable.min.js"></script>
-<script type="text/javascript" src="js/lib/etsy_api.min.js"></script>
+<script type="text/javascript" src="vendor/sorttable.min.js"></script>
+<script type="text/javascript" src="vendor/download.min.js"></script>
+    <script type="text/javascript" src="js/lib/etsy_api.min.js"></script>
 <script type="text/javascript" src="js/lib/etsy_db.min.js"></script>
 <script type="text/javascript" src="js/lib/etsy_api_helper.min.js"></script>
 <script type="text/javascript" src="js/lib/display.min.js"></script>
