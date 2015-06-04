@@ -1,26 +1,35 @@
 <div id="tabImportExport" class="col s12 settings-page">
     <div class="row">
-        <div class="col s6 settings-border-right">
+        <div class="col s6 settings-border-right center-align">
+            <p class="flow-text">Import Data</p>
             <div class="file-field input-field">
                 <input class="file-path validate" type="text"/>
-                <div class="btn">
+                <div class="btn light-blue">
                     <span>File</span>
                     <input type="file" />
                 </div>
             </div>
-            <a class="waves-effect waves-light btn light-blue"><i class="mdi-file-file-upload left"></i>Import</a>
+            <a class="waves-effect waves-light btn orange btn-top-margin"><i class="mdi-file-file-upload left"></i>Import</a>
         </div>
         <div class="col s6">
-            Explanation
+            <p class="flow-text">
+                Click the "File" button to select an import file.
+                This must be a file that was created using the below import function. This feature will import all of
+                the product and bin data that was previously backed up.
+            </p>
         </div>
     </div>
     <div class="divider"></div>
     <div class="row">
-        <div class="col s6 settings-border-right">
-            <a id="btnExportData" class="waves-effect waves-light btn light-blue"><i class="mdi-file-file-download left"></i>Export</a>
+        <div class="col s6 settings-border-right center-align">
+            <p class="flow-text">Export Data</p>
+            <a id="btnExportData" class="waves-effect waves-light btn green btn-top-margin"><i class="mdi-file-file-download left"></i>Export</a>
         </div>
         <div class="col s6">
-            Explanation
+            <p class="flow-text">
+                Exporting data allows you to download a backup copy of your currently stored products and the bins they are in.
+                Use this feature regularly to ensure you have copies of your application data in case of hardware failure.
+            </p>
         </div>
     </div>
 </div>
