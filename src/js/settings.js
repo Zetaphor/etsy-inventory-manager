@@ -62,7 +62,7 @@ $(document).ready(function() {
     $('#btnExportData').on('click', function() {
         $.etsyDB.export().then(function (dbObj) {
             var json = JSON.stringify(dbObj);
-            alert (json);
+            download(json, "Etsy_Inventory_Data.json", "application/json");
         });
     });
 });
