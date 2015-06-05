@@ -105,8 +105,8 @@ $(document).ready(function() {
     });
 
     $('#updateAllProductBin').on('click', function() {
-        var product_id = parseInt($('#allProductBinList').attr('all-product-id')),
-            bin_id =  parseInt($('#allProductBinList .active').attr('all-product-bin-id'));
+        var product_id = $('#allProductBinList').attr('all-product-id'),
+            bin_id =  $('#allProductBinList .active').attr('all-product-bin-id');
         $.etsyDB.products.setBin(product_id, bin_id, $.display.page.products.updateProductBin);
         $('#modalAllProductBin').closeModal();
     });

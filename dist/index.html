@@ -366,6 +366,30 @@
         </div>
     </div>
 </div>
+        <div id="pageHelp" class="page">
+    <div class="row">
+        <div class="col s12 m9 l10">
+            <div id="introduction" class="section scrollspy">
+                <p>Content </p>
+            </div>
+
+            <div id="structure" class="section scrollspy">
+                <p>Content </p>
+            </div>
+
+            <div id="initialization" class="section scrollspy">
+                <p>Content </p>
+            </div>
+        </div>
+        <div class="col hide-on-small-only m3 l2">
+            <ul class="section table-of-contents">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#structure">Structure</a></li>
+                <li><a href="#initialization">Intialization</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
         <div id="pageBins" class="page">
     <div id="modalCreateBin" class="modal modal-fixed-footer">
     <div class="modal-content">
@@ -425,7 +449,33 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Cancel</a>
     </div>
 </div>
-    
+    <div id="modalViewBinContents" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 id="viewBinProductsName">Bin Name</h4>
+        <table id="binProductsTable" class="striped bordered sortable">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Original Publish Date</th>
+                <th>Original Creation Date</th>
+            </tr>
+            </thead>
+
+            <tbody id="binProductTableBody">
+            <tr id="binProductTemplate" class="template">
+                <td class="truncate"><a class="listing-url" href="#" title="">Product Title</a></td>
+                <td class="price">$5.00</td>
+                <td class="created">Yesterday</td>
+                <td class="original-created">Today</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Close</a>
+    </div>
+</div>
     <div id="modalPrintBinLabel" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>Print Bin Label</h4>
@@ -519,30 +569,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-        <div id="pageHelp" class="page">
-    <div class="row">
-        <div class="col s12 m9 l10">
-            <div id="introduction" class="section scrollspy">
-                <p>Content </p>
-            </div>
-
-            <div id="structure" class="section scrollspy">
-                <p>Content </p>
-            </div>
-
-            <div id="initialization" class="section scrollspy">
-                <p>Content </p>
-            </div>
-        </div>
-        <div class="col hide-on-small-only m3 l2">
-            <ul class="section table-of-contents">
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#structure">Structure</a></li>
-                <li><a href="#initialization">Intialization</a></li>
-            </ul>
         </div>
     </div>
 </div>

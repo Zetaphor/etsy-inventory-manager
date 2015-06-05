@@ -88,6 +88,8 @@ $(document).ready(function() {
             },
 
             setBin: function(product_id, bin_id, callback) {
+                product_id = parseInt(product_id);
+                bin_id = parseInt(bin_id);
                 $.db.table('bins').where('id').equals(bin_id).toArray().then(function(bin) {
                     var bin_name = bin[0].name;
                     $.db.table('products').update(product_id, {bin_id: bin_id, bin_name: bin_name}).then(function(success) {
@@ -117,6 +119,13 @@ $(document).ready(function() {
         },
 
         bins: {
+            getContents: function(bin_id, callback) {
+                bin_id = parseInt(bin_id);
+                $.db.table('products').where("bin_id").equals(bin_id).toArray().then(function(data) {
+                    callback(data);
+                });
+            },
+
             getAll: function(callback) {
                 var bins = [];
                 $.db.table('bins').each(function(bin) {
@@ -147,6 +156,7 @@ $(document).ready(function() {
             },
 
             update: function(id, name, notes, callback) {
+                id = parseInt(id);
                 $.db.table('bins').where("name").equals(name).count(function(count) {
                     if (count === 0) {
                         $.db.table('bins').update(id, {name: name, notes: notes}).then(function (success) {
@@ -164,6 +174,7 @@ $(document).ready(function() {
             },
 
             delete: function(id, name, callback) {
+                id = parseInt(id);
                 $.db.table('bins').where("id").equals(id).delete().then(function() {
                     $.display.toastSuccess('Bin #' + id + " - '" + name + "' deleted successfully");
                     callback(id);
