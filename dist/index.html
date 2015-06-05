@@ -27,7 +27,7 @@
                 <div id="tabSettingsShop" class="col s12 settings-page">
     <div class="row">
         <div class="col s6">
-            <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text" class="validate">
+            <input placeholder="Enter Etsy Shop Namesettings-page" id="shop_name" type="text">
             <label for="shop_name">Shop Name</label>
             <p class="flow-text">Enter your Etsy shop name. This is the shop that all listings will be pulled from using the Etsy Listings API.</p>
         </div>
@@ -45,7 +45,7 @@
                         </label>
                     </div>
                     <p>
-                        <input disabled="disabled" value="10" id="autoUpdateInterval" type="number" class="validate auto-update" min="1" max="99">
+                        <input disabled="disabled" value="10" id="autoUpdateInterval" type="number" class="auto-update" min="1" max="99">
                         <label for="autoUpdateInterval">Interval (Minutes)</label>
                     </p>
                     <p>
@@ -93,7 +93,7 @@
         <div class="col s6 settings-border-right center-align">
             <p class="flow-text">Import Data</p>
             <div class="file-field input-field">
-                <input id="importPath" class="file-path validate" type="text"/>
+                <input id="importPath" class="file-path" type="text"/>
                 <div class="btn light-blue">
                     <span>File</span>
                     <input id="importFile" type="file" />
