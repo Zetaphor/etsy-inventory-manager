@@ -4,6 +4,7 @@ $(document).ready(function() {
             $.display.toggleLoadingScreen($.etsyDB.products.getNew($.display.page.newproducts.drawProducts));
         },
 
+        // Draw products table
         drawProducts: function(new_products) {
             var appendString = '';
 
@@ -44,6 +45,7 @@ $(document).ready(function() {
             newProductTableBody.innerHTML = appendString;
         },
 
+        // Draw product bin list
         drawBinList: function(bins) {
             var appendString = '';
             var currentBin = $('#newProductsBinID').html();
@@ -61,17 +63,19 @@ $(document).ready(function() {
             newProductBinList.innerHTML = appendString;
         },
 
+        // Remove product after assigning bin
         updateProductBin: function(product_id, bin_id, bin_name) {
             $('#new-product-row-' + product_id).fadeOut('slow', function() {
                 $(this).remove();
             });
-            //var product_row = $('#new-product-row-' + product_id);
-            //product_row.find('.bin-name').html(bin_name);
-            //product_row.find('.bin-id').html(bin_id);
-            //product_row.find('.new-product-actions').find('.btn-floating').attr({
-            //    "new-product-bin-id": bin_id
-            //});
-        }
+        },
+
+        // Remove product row
+        removeProduct: function(product_id) {
+            $('#new-product-row-' + product_id).fadeOut('slow', function() {
+                $(this).remove();
+            });
+        },
     };
 
     var newProductTemplate = $('#newProductTemplate').clone();
@@ -80,16 +84,23 @@ $(document).ready(function() {
     var newProductBinTemplate = $('#newProductBinTemplate');
     $('#newProductBinTemplate').remove();
 
+    // Mark product as sold
+    $('body').on('click', '.btn-new-product-sold', function() {
+        // TODO: Open the dialog here
+    });
 
+    // Mark product bin list item active
     $('body').on('click', '.new-product-bin-list-item', function() {
         $('.new-product-bin-list-item').removeClass('active');
         $(this).addClass('active');
     });
 
+    // Reload products
     $('#reloadNewProducts').on('click', function() {
         $.display.page.newproducts.load();
     });
 
+    // Open product bin list modal
     $('body').on('click', '.btn-new-product-change-bin', function() {
         $('#newProductBinList').attr('new-product-id', $(this).attr('new-product-id'));
         $('#newProductBinTitle').html($(this).attr('new-product-title'));
@@ -107,6 +118,7 @@ $(document).ready(function() {
         $('#modalNewProductBin').openModal();
     });
 
+    // Update product bin display
     $('#updateNewProductBin').on('click', function() {
         var product_id = $('#newProductBinList').attr('new-product-id'),
             bin_id =  $('#newProductBinList .active').attr('new-product-bin-id');

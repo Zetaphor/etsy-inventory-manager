@@ -115,6 +115,14 @@ $(document).ready(function() {
                 $.db.table('products').toArray().then(function(data) {
                     callback(data);
                 });
+            },
+
+            delete: function(id, name, callback) {
+                id = parseInt(id);
+                $.db.table('products').where("id").equals(id).delete().then(function() {
+                    $.display.toastSuccess("Product '" + name + "' deleted successfully");
+                    callback(id);
+                });
             }
         },
 
