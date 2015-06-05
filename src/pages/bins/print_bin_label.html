@@ -1,0 +1,56 @@
+<div id="modalPrintBinLabel" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Print Bin Label</h4>
+        <div class="row">
+            <div class="col s6">
+                <p>Label Size</p>
+                <div class="row">
+                    <div class="col s3">
+                        <input class="with-gap light-blue" name="label-size" type="radio" id="large" />
+                        <label for="large">Large</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s3">
+                        <input class="with-gap" name="label-size" type="radio" id="medium" />
+                        <label for="medium">Medium</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s3">
+                        <input class="with-gap" name="label-size" type="radio" id="small" />
+                        <label for="small">Small</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s3">
+                        <input id="labelImageSize" type="text" value="0">
+                        <label for="labelImageSize">Image Size (px)</label>
+                    </div>
+
+                    <div class="col s3">
+                        <input id="labelFontSize" type="text" value="0">
+                        <label for="labelFontSize">Font Size (px)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6 col-print-preview">
+                <p class="center-align example-text">Example - Not To Scale</p>
+                <div id="printPreview" class="z-depth-2">
+                    <div id="previewWrapper">
+                        <img id="previewImage" src="" />
+                        <div id="previewTitle">Bin Title</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action waves-effect waves-blue btn-flat green white-text" id="printBin">Print</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat ">Close</a>
+    </div>
+</div>
