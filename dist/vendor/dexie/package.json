@@ -24,7 +24,7 @@
   "_id": "dexie@1.1.0",
   "scripts": {},
   "_shasum": "b9ba5b382fd2485b48c8b0298d3ffac66bc30131",
-  "_from": "dexie@^1.1.0",
+  "_from": "dexie@1.1.0",
   "_npmVersion": "2.9.1",
   "_nodeVersion": "0.12.3",
   "_npmUser": {

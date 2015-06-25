@@ -64,7 +64,7 @@
   "_id": "materialize-css@0.96.1",
   "scripts": {},
   "_shasum": "5c854dfbb1b6656e9f935936fdddfb2d57134c46",
-  "_from": "materialize-css@~0.96.1",
+  "_from": "materialize-css@0.96.1",
   "_npmVersion": "2.7.4",
   "_nodeVersion": "0.12.2",
   "_npmUser": {
