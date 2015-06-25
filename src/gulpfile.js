@@ -53,10 +53,6 @@ gulp.task('images', function () {
         .pipe(gulp.dest('../dist/img'));
 });
 
-gulp.task('materialize', function () {
-
-});
-
 gulp.task('modules', function () {
     gulp.src('node_modules/materialize-css/**/*')
         .pipe(gulp.dest('../dist/vendor/materialize-css'));
@@ -69,6 +65,9 @@ gulp.task('modules', function () {
 
     gulp.src('node_modules/jquery/dist/**/*')
         .pipe(gulp.dest('../dist/vendor/jquery'));
+
+    gulp.src('node/**/*.js')
+        .pipe(gulp.dest('../dist/node'));
 
     gulp.src('vendor/**/*.js')
         .pipe(uglify())

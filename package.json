@@ -1,21 +1,27 @@
 {
-    "main": "dist/index.html",
     "name": "etsy-inventory-manager",
     "description": "Manage Etsy inventory",
     "version": "0.1.0",
+    "node-main": "dist/node/server.js",
+    "node-local": "rainabba.me",
+    "single-instance": true,
+    "main": "dist/index.html",
     "window": {
         "title": "Etsy Inventory Manager",
         "icon": "link.png",
         "toolbar": false,
         "frame": true,
+        "position": "center",
         "width": 1024,
         "height": 768,
-        "position": "center",
         "min_width": 1024,
         "min_height": 768,
         "max_width": 1920,
-        "max_height": 1080
+        "max_height": 1080,
+        "resizable": true,
+        "kiosk": false
     },
+    "chromium-args": "--child-clean-exit"
     "webkit": {
         "plugin": true
     }
