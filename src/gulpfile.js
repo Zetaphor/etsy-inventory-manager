@@ -66,6 +66,12 @@ gulp.task('modules', function () {
     gulp.src('node_modules/jquery/dist/**/*')
         .pipe(gulp.dest('../dist/vendor/jquery'));
 
+    gulp.src('node_modules/socket.io/**/*')
+        .pipe(gulp.dest('../dist/node_modules/socket.io'));
+
+    gulp.src('node_modules/http/**/*')
+        .pipe(gulp.dest('../dist/node_modules/http'));
+
     gulp.src('node/**/*.js')
         .pipe(gulp.dest('../dist/node'));
 
