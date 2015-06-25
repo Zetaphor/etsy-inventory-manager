@@ -11,10 +11,14 @@ $(document).ready(function() {
 
     socket.on('connect', function() {
         console.log('socket.io connected');
+        $('#serverStatusImg').removeClass().addClass('right mdi-device-wifi-tethering');
+        $('#serverStatus').html('Waiting For Device');
     });
 
     socket.io.on('connect_error', function(err) {
         // handle server error here
         console.log('Error connecting to server');
+        $('#serverStatusImg').removeClass().addClass('right mdi-navigation-cancel');
+        $('#serverStatus').html('Server Error');
     });
 });
