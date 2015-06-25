@@ -33,9 +33,10 @@
     "nw": "^0.12.2"
   },
   "dependencies": {
-    "jquery": "~2.1.4",
     "dexie": "^1.1.0",
+    "jquery": "~2.1.4",
     "materialize-css": "~0.96.1",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "socket.io": "^1.3.5"
   }
 }

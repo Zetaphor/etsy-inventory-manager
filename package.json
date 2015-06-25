@@ -21,8 +21,11 @@
         "resizable": true,
         "kiosk": false
     },
-    "chromium-args": "--child-clean-exit"
+    "chromium-args": "--child-clean-exit",
     "webkit": {
         "plugin": true
+    },
+    "dependencies": {
+      "socket.io": "^1.1.0"
     }
 }
