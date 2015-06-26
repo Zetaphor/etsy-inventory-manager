@@ -1,0 +1,39 @@
+{
+  "name": "etsy-inventory-manager-mobile",
+  "version": "0.0.0",
+  "description": "Manage Etsy Inventory Mobile App",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Zetaphor/etsy-inventory-manager.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Zetaphor/etsy-inventory-manager.git/issues"
+  },
+  "devDependencies": {
+    "dexie": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "~2.2.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-file-include": "~0.9.0",
+    "gulp-jshint": "~1.10.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "~1.2.2",
+    "gulp-sass": "~2.0.0",
+    "gulp-sourcemaps": "~1.5.2",
+    "gulp-uglify": "~1.2.0",
+    "jquery": "~2.1.4",
+    "jshint-stylish": "~1.0.2",
+    "materialize-css": "~0.96.1",
+    "moment": "~2.10.3"
+  },
+  "dependencies": {
+    "dexie": "^1.1.0",
+    "jquery": "~2.1.4",
+    "materialize-css": "~0.96.1",
+    "moment": "~2.10.3",
+  }
+}
