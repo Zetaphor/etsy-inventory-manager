@@ -3,9 +3,8 @@
     "description": "Manage Etsy inventory",
     "version": "0.1.0",
     "node-main": "desktop/dist/node/server.js",
-//    "node-local": "rainabba.me",
     "single-instance": true,
-    "main": "dist/index.html",
+    "main": "desktop/dist/index.html",
     "window": {
         "title": "Etsy Inventory Manager",
         "icon": "link.png",
