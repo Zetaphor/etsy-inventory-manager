@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.display = {
         pageSpeed: 300,
-        loadingTime: 1500,
+        loadingTime: 500,
         page: {}, // Container for all page function objects
 
         switchPage: function(page) {
