@@ -10,18 +10,20 @@ function handler (req, res) {
     res.end("Hello world!");
 }
 
-function sendEvent(socketID, eventName, data) {
-    io.sockets.socket(socketID).emit(eventName, data);
+function sendEvent(eventName, data) {
+    data = typeof data !== 'undefined' ? data : '';
+    io.sockets.emit(eventName, data);
 }
 
 io.sockets.on('connection', function (socket) {
-    console.log("Client connected successfully");
 
-    socket.on('updateUsers', function(data) {
-        sendEvent(socket.id, 'userUpdateSuccess');
+    socket.on('desktopConnect', function(data) {
+        console.log("Desktop connected");
+        sendEvent('desktopConnected');
     });
 
-    socket.on('colorChange', function(data) {
-        sendEvent(socket.id, 'userNotFound', 'test data');
+    socket.on('mobileConnect', function(data) {
+        console.log("Mobile connected");
+        sendEvent('mobileConnected');
     });
 });

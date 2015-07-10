@@ -11,17 +11,15 @@ function handler (req, res) {
 }
 
 function sendEvent(socketID, eventName, data) {
+    data = typeof data !== 'undefined' ? data : '';
     io.sockets.socket(socketID).emit(eventName, data);
 }
 
 io.sockets.on('connection', function (socket) {
     console.log("Client connected successfully");
 
-    socket.on('updateUsers', function(data) {
-        sendEvent(socket.id, 'userUpdateSuccess');
-    });
-
-    socket.on('colorChange', function(data) {
-        sendEvent(socket.id, 'userNotFound', 'test data');
+    socket.on('desktopConnect', function(data) {
+        console.log("Desktop connected");
+        //sendEvent(socket.id, 'userUpdateSuccess');
     });
 });

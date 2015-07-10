@@ -9,8 +9,18 @@ $(document).ready(function() {
         console.log('Socket.IO object unavailable');
     }
 
+    function sendEvent(eventName, data) {
+        data = typeof data !== 'undefined' ? data : '';
+        socket.emit(eventName, data);
+    }
+
     socket.on('connect', function() {
         console.log('Connected');
+        sendEvent('mobileConnect');
+    });
+
+    socket.on('desktopConnected', function() {
+        console.log('Desktop connected');
     });
 
     socket.io.on('connect_error', function(err) {
