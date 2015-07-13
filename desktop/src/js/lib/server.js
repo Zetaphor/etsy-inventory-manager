@@ -29,7 +29,6 @@ $(document).ready(function() {
         $('#serverStatusImg').removeClass().addClass('right mdi-device-wifi-tethering');
         $('#serverStatus').html('Waiting For Device');
         console.log('Connected');
-        //sendEvent('desktopConnect');
     });
 
     $.socket.on('mobileConnected', function(socketID) {

@@ -29,7 +29,6 @@ io.sockets.on('connection', function (socket) {
     if (desktop && mobile) {
         sendEvent(mobile, 'desktopConnected', desktop);
         sendEvent(desktop, 'mobileConnected', mobile);
-        sendEvent(mobile, 'receivedData', 'test');
     }
 
     socket.on('disconnect', function() {

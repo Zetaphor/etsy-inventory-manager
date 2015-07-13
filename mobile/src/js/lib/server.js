@@ -27,7 +27,6 @@ $(document).ready(function() {
 
     $.socket.on('connect', function() {
         console.log('Connected');
-        $.sendEvent('mobileConnect');
         // TODO: Show connected status
     });
 
