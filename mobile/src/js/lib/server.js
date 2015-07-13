@@ -12,11 +12,12 @@ $(document).ready(function() {
     }
 
     $.sendEvent = function(eventName, data) {
-        data = typeof data !== 'undefined' ? data : '';
+        data = typeof data !== 'undefined' ? data : false;
         $.socket.emit(eventName, data);
     };
 
     $.sendToDesktop = function(eventName, data) {
+        data = typeof data !== 'undefined' ? data : '';
         $.socket.emit('sendCommand', {target: $.desktopSocketID, event: eventName, data: data});
     };
 
@@ -42,10 +43,5 @@ $(document).ready(function() {
 
     $.socket.io.on('connect_error', function(err) {
         console.log('Connection error: ' + err);
-    });
-
-    $.socket.on('binData', function(data) {
-        console.log('Received bin data');
-        console.log(data);
     });
 });

@@ -18,7 +18,7 @@ function sendEvent(socketID, eventName, data) {
 }
 
 io.sockets.on('connection', function (socket) {
-    if (socket.handshake.query.type == 'mobile') {
+    if (socket.handshake.query.type === 'mobile') {
         mobile = socket.id;
         console.log('Mobile connected');
     } else {
@@ -32,14 +32,19 @@ io.sockets.on('connection', function (socket) {
     }
 
     socket.on('disconnect', function() {
-        if (socket.id == desktop) {
+        if (socket.id === desktop) {
             console.log('Desktop disconnected');
             desktop = false;
             if (mobile) sendEvent(mobile, 'desktopDisconnected');
-        } else if (socket.id == mobile) {
+        } else if (socket.id === mobile) {
             console.log('Mobile disconnected');
             mobile = false;
             if (desktop) sendEvent(desktop, 'mobileDisconnected');
         }
+    });
+
+    socket.on('sendCommand', function(command) {
+        console.log('Saw command: ' + command.event);
+        io.sockets.to(command.target).emit(command.event, command.data);
     });
 });

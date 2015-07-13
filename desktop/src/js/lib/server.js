@@ -17,13 +17,9 @@ $(document).ready(function() {
     }
 
     $.sendToMobile = function(eventName, data) {
+        data = typeof data !== 'undefined' ? data : '';
         $.socket.emit('sendCommand', {target: $.mobileSocketID, event: eventName, data: data});
     };
-
-    $.socket.on('test', function(data) {
-        console.log('Received message');
-        console.log(data);
-    });
 
     $.socket.on('connect', function() {
         $('#serverStatusImg').removeClass().addClass('right mdi-device-wifi-tethering');
@@ -49,6 +45,11 @@ $(document).ready(function() {
 
     $.socket.io.on('getBinList', function() {
         console.log('Bin list requested');
+    });
+
+    $.socket.on('test', function(data) {
+        console.log('Received message');
+        console.log(data);
     });
 
 

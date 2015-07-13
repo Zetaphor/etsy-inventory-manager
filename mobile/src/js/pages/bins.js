@@ -6,7 +6,7 @@ $(document).ready(function() {
 
         getBinList: function() {
             console.log('Requesting bin list');
-            $.sendEvent('getBinList');
+            $.sendToDesktop('getBinList');
         },
 
         drawBinList: function(bin_data) {
@@ -16,5 +16,10 @@ $(document).ready(function() {
 
     $('#getBinList').on('click', function() {
         $.display.page.bins.getBinList();
+    });
+
+    $.socket.on('binData', function(data) {
+        console.log('Received bin data');
+        console.log(data);
     });
 });
