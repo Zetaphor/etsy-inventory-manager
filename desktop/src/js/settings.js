@@ -91,6 +91,7 @@ $(document).ready(function() {
     });
 
     $('#btnImport').on('click', function() {
+        // TODO: Actually import the data
         console.log(import_data);
     });
 
