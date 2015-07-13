@@ -6,7 +6,7 @@ $(document).ready(function() {
 
         getBinList: function() {
             console.log('Requesting bin list');
-            $.sendToDesktop('getBinList');
+            $.sendToDesktop('getBinList', false);
         },
 
         drawBinList: function(bin_data) {

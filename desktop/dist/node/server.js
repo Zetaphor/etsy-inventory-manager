@@ -45,6 +45,8 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('sendCommand', function(command) {
         console.log('Saw command: ' + command.event);
+        console.log(command.target);
+        console.log(command.data);
         io.sockets.to(command.target).emit(command.event, command.data);
     });
 });

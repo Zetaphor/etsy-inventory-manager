@@ -42,15 +42,4 @@ $(document).ready(function() {
         $('#serverStatusImg').removeClass().addClass('right mdi-navigation-cancel');
         $('#serverStatus').html('Server Error');
     });
-
-    $.socket.io.on('getBinList', function() {
-        console.log('Bin list requested');
-    });
-
-    $.socket.on('test', function(data) {
-        console.log('Received message');
-        console.log(data);
-    });
-
-
 });

@@ -21,11 +21,6 @@ $(document).ready(function() {
         $.socket.emit('sendCommand', {target: $.desktopSocketID, event: eventName, data: data});
     };
 
-    $.socket.on('test', function(data) {
-        console.log('Received message');
-        console.log(data);
-    });
-
     $.socket.on('connect', function() {
         console.log('Connected');
         // TODO: Show connected status
